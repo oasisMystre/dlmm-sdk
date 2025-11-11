@@ -1,0 +1,1 @@
+cd ts-client && npm pack && cd - && mkdir -p ../../rhiva-ag/bin && mv ts-client/meteora-dlmm-sdk-*.tgz ../../rhiva-ag/bin && cd -

@@ -11,10 +11,11 @@ import {
   unpackMint,
 } from "@solana/spl-token";
 import {
+  AccountInfo,
   AccountMeta,
-  ComputeBudgetInstruction,
   ComputeBudgetProgram,
   Connection,
+  GetProgramAccountsResponse,
   Keypair,
   LAMPORTS_PER_SOL,
   PublicKey,
@@ -864,7 +865,7 @@ export class DLMM {
     };
   }
 
-  /**
+    /**
    * The function `getAllLbPairPositionsByUser` retrieves all liquidity pool pair positions for a given
    * user.
    * @param {Connection} connection - The `connection` parameter is an instance of the `Connection`
@@ -875,20 +876,13 @@ export class DLMM {
    * object. The `Map` object contains key-value pairs, where the key is a string representing the LB
    * Pair account, and the value is an object of PositionInfo
    */
-  static async getAllLbPairPositionsByUser(
+  static async processPositions(
     connection: Connection,
-    userPubKey: PublicKey,
+    positionsV2: GetProgramAccountsResponse,
     opt?: Opt
   ): Promise<Map<string, PositionInfo>> {
     const program = createProgram(connection, opt);
-
-    const positionsV2 = await program.provider.connection.getProgramAccounts(
-      program.programId,
-      {
-        filters: [positionV2Filter(), positionOwnerFilter(userPubKey)],
-      }
-    );
-
+   
     const positionWrappers: IPosition[] = [
       ...positionsV2.map((p) => wrapPosition(program, p.pubkey, p.account)),
     ];
@@ -1136,6 +1130,35 @@ export class DLMM {
     return positionsMap;
   }
 
+
+  /**
+   * The function `getAllLbPairPositionsByUser` retrieves all liquidity pool pair positions for a given
+   * user.
+   * @param {Connection} connection - The `connection` parameter is an instance of the `Connection`
+   * class, which represents the connection to the Solana blockchain.
+   * @param {PublicKey} userPubKey - The user's wallet public key.
+   * @param {Opt} [opt] - An optional object that contains additional options for the function.
+   * @returns The function `getAllLbPairPositionsByUser` returns a `Promise` that resolves to a `Map`
+   * object. The `Map` object contains key-value pairs, where the key is a string representing the LB
+   * Pair account, and the value is an object of PositionInfo
+   */
+  static async getAllLbPairPositionsByUser(
+    connection: Connection,
+    userPubKey: PublicKey,
+    opt?: Opt
+  ): Promise<Map<string, PositionInfo>> {
+    const program = createProgram(connection, opt);
+
+    const positionsV2 = await program.provider.connection.getProgramAccounts(
+      program.programId,
+      {
+        filters: [positionV2Filter(), positionOwnerFilter(userPubKey)],
+      }
+    );
+
+    return DLMM.processPositions(connection, positionsV2);
+  }
+
   public static getPricePerLamport(
     tokenXDecimal: number,
     tokenYDecimal: number,
@@ -1189,7 +1212,7 @@ export class DLMM {
     const clock = ClockLayout.decode(clockAccInfo.data) as Clock;
 
     const currentPoint =
-      this.lbPair.activationType == ActivationType.Slot
+      this.lbPair.activationType === ActivationType.Slot
         ? clock.slot
         : clock.unixTimestamp;
 
@@ -1199,7 +1222,7 @@ export class DLMM {
       p.lockReleasePoint().gt(minLockReleasePoint)
     );
 
-    if (positionsWithLock.length == 0) {
+    if (positionsWithLock.length === 0) {
       return {
         positions: [],
       };
@@ -2508,7 +2531,7 @@ export class DLMM {
       );
     }
 
-    let position: IPosition = wrapPosition(
+    const position: IPosition = wrapPosition(
       this.program,
       positionPubKey,
       positionAccountInfo
@@ -2526,7 +2549,7 @@ export class DLMM {
 
     const clock: Clock = ClockLayout.decode(clockAccInfo.data);
 
-    const binArrayMap = new Map<String, BinArray>();
+    const binArrayMap = new Map<string, BinArray>();
 
     for (let i = 0; i < binArrayAccountsInfo.length; i++) {
       if (binArrayAccountsInfo[i]) {
@@ -2650,7 +2673,7 @@ export class DLMM {
 
       let currentEndBinId = startBinId + initialPositionWidth - 1;
       while (true) {
-        if (currentEndBinId == endBinId) break;
+        if (currentEndBinId === endBinId) break;
 
         currentEndBinId = Math.min(
           currentEndBinId + MAX_RESIZE_LENGTH.toNumber(),

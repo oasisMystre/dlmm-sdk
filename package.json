@@ -1,5 +1,11 @@
 {
+  "name": "@oasismystre/meteora",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "cd ts-client && bun run build && cd - && chmod +x ./build.sh && ./build.sh"
+  },
   "dependencies": {
     "pako": "^2.1.0"
-  }
+  },
+  "workspaces": ["ts-client"]
 }
