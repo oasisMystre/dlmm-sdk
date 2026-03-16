@@ -25,13 +25,13 @@ export interface LiquidityStrategyParameterBuilder {
     minDeltaId: BN,
     maxDeltaId: BN,
     binStep: BN,
-    activeId: BN
+    activeId: BN,
   ): BidAskParameters;
   findYParameters(
     amountY: BN,
     minDeltaId: BN,
     maxDeltaId: BN,
-    activeId: BN
+    activeId: BN,
   ): BidAskParameters;
   suggestBalancedXParametersFromY(
     activeId: BN,
@@ -39,7 +39,7 @@ export interface LiquidityStrategyParameterBuilder {
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountY: BN
+    amountY: BN,
   ): BidAskParameters & { amountX: BN };
   suggestBalancedYParametersFromX(
     activeId: BN,
@@ -47,12 +47,12 @@ export interface LiquidityStrategyParameterBuilder {
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountXInQuoteValue: BN
+    amountXInQuoteValue: BN,
   ): BidAskParameters & { amountY: BN };
 }
 
 export function getLiquidityStrategyParameterBuilder(
-  strategyType: StrategyType
+  strategyType: StrategyType,
 ): LiquidityStrategyParameterBuilder {
   switch (strategyType) {
     case StrategyType.Spot:
@@ -74,7 +74,7 @@ export function suggestBalancedXParametersFromY(
   activeId: BN,
   binStep: BN,
   favorXInActiveBin: boolean,
-  builder: LiquidityStrategyParameterBuilder
+  builder: LiquidityStrategyParameterBuilder,
 ) {
   const endDeltaIdBidSide = favorXInActiveBin ? new BN(-1) : new BN(0);
 
@@ -98,7 +98,7 @@ export function suggestBalancedXParametersFromY(
     new BN(0),
     y0,
     binStep,
-    favorXInActiveBin
+    favorXInActiveBin,
   ).reduce((acc, bin) => {
     return acc.add(bin.amountY);
   }, new BN(0));
@@ -112,13 +112,13 @@ export function suggestBalancedXParametersFromY(
     favorXInActiveBin,
     minXDeltaId,
     maxXDeltaId,
-    totalAmountY
+    totalAmountY,
   );
 }
 
 export function getAutoFillAmountByRebalancedPosition(
   rebalancePosition: RebalancePosition,
-  strategyType: StrategyType
+  strategyType: StrategyType,
 ): {
   amount: BN;
   isBidSide: boolean;
@@ -176,7 +176,7 @@ export function getAutoFillAmountByRebalancedPosition(
       favorXInActiveBin,
       new BN(minDeltaId),
       new BN(maxDeltaId),
-      liquidityInAskSide
+      liquidityInAskSide,
     );
 
     const [_, positionAmountY] = rebalancePosition.totalAmounts();
@@ -210,7 +210,7 @@ export function getAutoFillAmountByRebalancedPosition(
       favorXInActiveBin,
       new BN(minDeltaId),
       new BN(maxDeltaId),
-      liquidityInBidSide
+      liquidityInBidSide,
     );
 
     const [positionAmountX] = rebalancePosition.totalAmounts();
@@ -235,7 +235,7 @@ export function suggestBalancedYParametersFromX(
   activeId: BN,
   binStep: BN,
   favorXInActiveBin: boolean,
-  builder: LiquidityStrategyParameterBuilder
+  builder: LiquidityStrategyParameterBuilder,
 ) {
   const startDeltaIdAskSide = favorXInActiveBin ? new BN(0) : new BN(1);
 
@@ -259,13 +259,13 @@ export function suggestBalancedYParametersFromX(
     x0,
     new BN(0),
     binStep,
-    favorXInActiveBin
+    favorXInActiveBin,
   );
 
   const totalAmountXInQuote = amountXInBins.reduce((acc, bin) => {
     const price = getPriceOfBinByBinId(
       bin.binId.toNumber(),
-      binStep.toNumber()
+      binStep.toNumber(),
     );
     return acc.add(price.mul(new Decimal(bin.amountX.toString())));
   }, new Decimal(0));
@@ -281,7 +281,7 @@ export function suggestBalancedYParametersFromX(
     favorXInActiveBin,
     minYDeltaId,
     maxYDeltaId,
-    totalAmountXInQuoteBN
+    totalAmountXInQuoteBN,
   );
 }
 
@@ -293,7 +293,7 @@ export function buildLiquidityStrategyParameters(
   binStep: BN,
   favorXInActiveId: boolean,
   activeId: BN,
-  strategyParameterBuilder: LiquidityStrategyParameterBuilder
+  strategyParameterBuilder: LiquidityStrategyParameterBuilder,
 ): LiquidityStrategyParameters {
   if (minDeltaId.gt(maxDeltaId)) {
     return {
@@ -315,7 +315,7 @@ export function buildLiquidityStrategyParameters(
       amountY,
       minDeltaId,
       maxDeltaId,
-      activeId
+      activeId,
     );
     return {
       x0: new BN(0),
@@ -331,7 +331,7 @@ export function buildLiquidityStrategyParameters(
       minDeltaId,
       maxDeltaId,
       binStep,
-      activeId
+      activeId,
     );
     return {
       x0: base,
@@ -348,7 +348,7 @@ export function buildLiquidityStrategyParameters(
     amountY,
     minDeltaId,
     maxDeltaIdBidSide,
-    activeId
+    activeId,
   );
 
   const { base: x0, delta: deltaX } = strategyParameterBuilder.findXParameters(
@@ -356,7 +356,7 @@ export function buildLiquidityStrategyParameters(
     minDeltaIdAskSide,
     maxDeltaId,
     binStep,
-    activeId
+    activeId,
   );
 
   return {

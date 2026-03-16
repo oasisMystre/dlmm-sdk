@@ -36,7 +36,7 @@ function findBaseX0(
   minDeltaId: BN,
   maxDeltaId: BN,
   binStep: BN,
-  activeId: BN
+  activeId: BN,
 ) {
   // min_delta_id = m1, max_delta_id = m2
   // pm = (1+b)^-(active_id + m)
@@ -74,7 +74,7 @@ function findX0(
   minDeltaId: BN,
   maxDeltaId: BN,
   binStep: BN,
-  activeId: BN
+  activeId: BN,
 ) {
   if (minDeltaId.gt(maxDeltaId) || amountX.lte(new BN(0)) || amountX.isZero()) {
     return new BN(0);
@@ -88,7 +88,7 @@ function findX0(
       minDeltaId,
       maxDeltaId,
       new BN(0),
-      x0
+      x0,
     );
 
     const totalAmountX = amountInBins.reduce((acc, bin) => {
@@ -112,7 +112,7 @@ export class SpotStrategyParameterBuilder
     minDeltaId: BN,
     maxDeltaId: BN,
     binStep: BN,
-    activeId: BN
+    activeId: BN,
   ): BidAskParameters {
     return {
       base: findX0(amountX, minDeltaId, maxDeltaId, binStep, activeId),
@@ -124,7 +124,7 @@ export class SpotStrategyParameterBuilder
     amountY: BN,
     minDeltaId: BN,
     maxDeltaId: BN,
-    _activeId: BN
+    _activeId: BN,
   ): BidAskParameters {
     return {
       base: findY0(amountY, minDeltaId, maxDeltaId),
@@ -138,7 +138,7 @@ export class SpotStrategyParameterBuilder
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountY: BN
+    amountY: BN,
   ): BidAskParameters & { amountX: BN } {
     // pm = (1+b)^-(active_id + m)
     //
@@ -158,7 +158,7 @@ export class SpotStrategyParameterBuilder
       x0,
       new BN(0),
       binStep,
-      favorXInActiveBin
+      favorXInActiveBin,
     ).reduce((acc, bin) => {
       return acc.add(bin.amountX);
     }, new BN(0));
@@ -176,7 +176,7 @@ export class SpotStrategyParameterBuilder
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountXInQuoteValue: BN
+    amountXInQuoteValue: BN,
   ): BidAskParameters & { amountY: BN } {
     // sum(amounts) = y0 * (m1-m2+1) + delta_y * (m1 * (m1+1)/2 - m2 * (m2-1)/2)
     // set delta_y = 0
@@ -198,7 +198,7 @@ export class SpotStrategyParameterBuilder
       new BN(0),
       y0,
       binStep,
-      favorXInActiveBin
+      favorXInActiveBin,
     ).reduce((acc, bin) => {
       return acc.add(bin.amountY);
     }, new BN(0));

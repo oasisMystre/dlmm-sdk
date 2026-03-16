@@ -259,7 +259,7 @@ export module BinLiquidity {
     binStep: number,
     baseTokenDecimal: number,
     quoteTokenDecimal: number,
-    version: number
+    version: number,
   ): BinLiquidity {
     const pricePerLamport = getPriceOfBinByBinId(binId, binStep).toString();
     return {
@@ -283,7 +283,7 @@ export module BinLiquidity {
     binStep: number,
     baseTokenDecimal: number,
     quoteTokenDecimal: number,
-    version: number
+    version: number,
   ): BinLiquidity {
     const pricePerLamport = getPriceOfBinByBinId(binId, binStep).toString();
     return {
@@ -526,7 +526,7 @@ export enum ResizeSide {
 }
 
 export const MEMO_PROGRAM_ID = new PublicKey(
-  "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr"
+  "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
 );
 
 export interface RebalancePositionResponse {

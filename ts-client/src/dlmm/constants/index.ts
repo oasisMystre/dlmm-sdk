@@ -43,48 +43,48 @@ export const POOL_FEE = 0.00718272;
 export const BIN_ARRAY_BITMAP_FEE = 0.01180416;
 
 export const BIN_ARRAY_FEE_BN = new BN(
-  new Decimal(BIN_ARRAY_FEE).mul(LAMPORTS_PER_SOL).toString()
+  new Decimal(BIN_ARRAY_FEE).mul(LAMPORTS_PER_SOL).toString(),
 );
 export const POSITION_FEE_BN = new BN(
-  new Decimal(POSITION_FEE).mul(LAMPORTS_PER_SOL).toString()
+  new Decimal(POSITION_FEE).mul(LAMPORTS_PER_SOL).toString(),
 );
 export const TOKEN_ACCOUNT_FEE_BN = new BN(
-  new Decimal(TOKEN_ACCOUNT_FEE).mul(LAMPORTS_PER_SOL).toString()
+  new Decimal(TOKEN_ACCOUNT_FEE).mul(LAMPORTS_PER_SOL).toString(),
 );
 export const POOL_FEE_BN = new BN(
-  new Decimal(POOL_FEE).mul(LAMPORTS_PER_SOL).toString()
+  new Decimal(POOL_FEE).mul(LAMPORTS_PER_SOL).toString(),
 );
 export const BIN_ARRAY_BITMAP_FEE_BN = new BN(
-  new Decimal(BIN_ARRAY_BITMAP_FEE).mul(LAMPORTS_PER_SOL).toString()
+  new Decimal(BIN_ARRAY_BITMAP_FEE).mul(LAMPORTS_PER_SOL).toString(),
 );
 
 const CONSTANTS = Object.entries(IDL.constants);
 
 export const MAX_BIN_ARRAY_SIZE = new BN(
-  CONSTANTS.find(([k, v]) => v.name == "MAX_BIN_PER_ARRAY")?.[1].value ?? 0
+  CONSTANTS.find(([k, v]) => v.name == "MAX_BIN_PER_ARRAY")?.[1].value ?? 0,
 );
 export const DEFAULT_BIN_PER_POSITION = new BN(
   CONSTANTS.find(([k, v]) => v.name == "DEFAULT_BIN_PER_POSITION")?.[1].value ??
-    0
+    0,
 );
 export const BIN_ARRAY_BITMAP_SIZE = new BN(
-  CONSTANTS.find(([k, v]) => v.name == "BIN_ARRAY_BITMAP_SIZE")?.[1].value ?? 0
+  CONSTANTS.find(([k, v]) => v.name == "BIN_ARRAY_BITMAP_SIZE")?.[1].value ?? 0,
 );
 export const EXTENSION_BINARRAY_BITMAP_SIZE = new BN(
   CONSTANTS.find(([k, v]) => v.name == "EXTENSION_BINARRAY_BITMAP_SIZE")?.[1]
-    .value ?? 0
+    .value ?? 0,
 );
 
 export const POSITION_MAX_LENGTH = new BN(
-  CONSTANTS.find(([k, v]) => v.name == "POSITION_MAX_LENGTH")?.[1].value ?? 0
+  CONSTANTS.find(([k, v]) => v.name == "POSITION_MAX_LENGTH")?.[1].value ?? 0,
 );
 
 export const MAX_RESIZE_LENGTH = new BN(
-  CONSTANTS.find(([k, v]) => v.name == "MAX_RESIZE_LENGTH")?.[1].value ?? 0
+  CONSTANTS.find(([k, v]) => v.name == "MAX_RESIZE_LENGTH")?.[1].value ?? 0,
 );
 
 export const SIMULATION_USER = new PublicKey(
-  "HrY9qR5TiB2xPzzvbBu5KrBorMfYGQXh9osXydz4jy9s"
+  "HrY9qR5TiB2xPzzvbBu5KrBorMfYGQXh9osXydz4jy9s",
 );
 
 export const PRECISION = 18446744073709551616;
@@ -96,12 +96,12 @@ export const MAX_BIN_LENGTH_ALLOWED_IN_ONE_TX = 26;
 export const MAX_ACTIVE_BIN_SLIPPAGE = 3;
 
 export const ILM_BASE = new PublicKey(
-  "MFGQxwAmB91SwuYX36okv2Qmdc9aMuHTwWGUrp4AtB1"
+  "MFGQxwAmB91SwuYX36okv2Qmdc9aMuHTwWGUrp4AtB1",
 );
 
 export const MAX_EXTRA_BIN_ARRAYS = 3;
 export const U64_MAX = new BN("18446744073709551615");
 
 export const MAX_BINS_PER_POSITION = new BN(
-  CONSTANTS.find(([k, v]) => v.name == "POSITION_MAX_LENGTH")?.[1].value ?? 0
+  CONSTANTS.find(([k, v]) => v.name == "POSITION_MAX_LENGTH")?.[1].value ?? 0,
 );

@@ -51,7 +51,7 @@ function findY0AndDeltaY(
   amountY: BN,
   minDeltaId: BN,
   maxDeltaId: BN,
-  activeId: BN
+  activeId: BN,
 ): BidAskParameters {
   if (minDeltaId.gt(maxDeltaId) || amountY.isZero()) {
     return {
@@ -69,7 +69,7 @@ function findY0AndDeltaY(
       minDeltaId,
       maxDeltaId,
       baseDeltaY,
-      y0
+      y0,
     );
 
     const totalAmountY = amountInBins.reduce((acc, { amountY }) => {
@@ -92,7 +92,7 @@ function findMinX0(
   minDeltaId: BN,
   maxDeltaId: BN,
   activeId: BN,
-  binStep: BN
+  binStep: BN,
 ) {
   const minBinId = activeId.add(minDeltaId);
   const maxBinId = activeId.add(maxDeltaId);
@@ -114,7 +114,7 @@ function findBaseDeltaX(
   minDeltaId: BN,
   maxDeltaId: BN,
   binStep: BN,
-  activeId: BN
+  activeId: BN,
 ) {
   if (minDeltaId.gt(maxDeltaId) || amountX.lte(new BN(0))) {
     return new BN(0);
@@ -161,7 +161,7 @@ function findX0AndDeltaX(
   minDeltaId: BN,
   maxDeltaId: BN,
   binStep: BN,
-  activeId: BN
+  activeId: BN,
 ) {
   if (minDeltaId.gt(maxDeltaId) || amountX.lte(new BN(0)) || amountX.isZero()) {
     return {
@@ -175,7 +175,7 @@ function findX0AndDeltaX(
     minDeltaId,
     maxDeltaId,
     binStep,
-    activeId
+    activeId,
   );
 
   const x0 = minDeltaId.neg().mul(baseDeltaX).add(baseDeltaX);
@@ -187,7 +187,7 @@ function findX0AndDeltaX(
       minDeltaId,
       maxDeltaId,
       baseDeltaX,
-      x0
+      x0,
     );
 
     const totalAmountX = amountInBins.reduce((acc, { amountX }) => {
@@ -213,7 +213,7 @@ export class BidAskStrategyParameterBuilder
     minDeltaId: BN,
     maxDeltaId: BN,
     binStep: BN,
-    activeId: BN
+    activeId: BN,
   ): BidAskParameters {
     return findX0AndDeltaX(amountX, minDeltaId, maxDeltaId, binStep, activeId);
   }
@@ -222,7 +222,7 @@ export class BidAskStrategyParameterBuilder
     amountY: BN,
     minDeltaId: BN,
     maxDeltaId: BN,
-    activeId: BN
+    activeId: BN,
   ): BidAskParameters {
     return findY0AndDeltaY(amountY, minDeltaId, maxDeltaId, activeId);
   }
@@ -233,7 +233,7 @@ export class BidAskStrategyParameterBuilder
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountY: BN
+    amountY: BN,
   ): BidAskParameters & { amountX: BN } {
     // sum(amounts) = x0 * (p(m1)+..+p(m2)) + delta_x * (m1 * p(m1) + ... + m2 * p(m2))
     // default formula is, set x0 = -m1 * delta_x
@@ -242,7 +242,7 @@ export class BidAskStrategyParameterBuilder
     // delta_x = total_quote / (1 + 2 + ... + max_delta_id)
 
     const deltaX = amountY.div(
-      maxDeltaId.addn(1).mul(maxDeltaId.addn(2)).divn(2)
+      maxDeltaId.addn(1).mul(maxDeltaId.addn(2)).divn(2),
     );
 
     const x0 = minDeltaId.neg().mul(deltaX).add(deltaX);
@@ -256,7 +256,7 @@ export class BidAskStrategyParameterBuilder
       x0,
       new BN(0),
       binStep,
-      favorXInActiveBin
+      favorXInActiveBin,
     ).reduce((acc, bin) => {
       return acc.add(bin.amountX);
     }, new BN(0));
@@ -274,7 +274,7 @@ export class BidAskStrategyParameterBuilder
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountXInQuoteValue: BN
+    amountXInQuoteValue: BN,
   ): BidAskParameters & { amountY: BN } {
     // set y0 = -delta_y * m2
     // sum(amounts) = -delta_y * m2 * (m1-m2+1) + delta_y * (m1 * (m1+1)/2 - m2 * (m2-1)/2)
@@ -306,7 +306,7 @@ export class BidAskStrategyParameterBuilder
       new BN(0),
       y0,
       binStep,
-      favorXInActiveBin
+      favorXInActiveBin,
     ).reduce((acc, bin) => {
       return acc.add(bin.amountY);
     }, new BN(0));

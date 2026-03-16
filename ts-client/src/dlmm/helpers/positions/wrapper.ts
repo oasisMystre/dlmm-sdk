@@ -50,7 +50,7 @@ interface CombinedPositionBinData {
 
 function combineBaseAndExtendedPositionBinData(
   base: PositionV2,
-  extended: ExtendedPositionBinData[]
+  extended: ExtendedPositionBinData[],
 ): CombinedPositionBinData {
   const combinedLiquidityShares = base.liquidityShares;
   const combinedRewardInfos = base.rewardInfos;
@@ -72,25 +72,25 @@ function combineBaseAndExtendedPositionBinData(
 export function wrapPosition(
   program: Program<LbClmm>,
   key: PublicKey,
-  account: AccountInfo<Buffer>
+  account: AccountInfo<Buffer>,
 ): IPosition {
   const disc = account.data.subarray(0, 8);
   if (disc.equals(Buffer.from(getAccountDiscriminator("positionV2")))) {
     const state = decodeAccount<PositionV2>(
       program,
       "positionV2",
-      account.data
+      account.data,
     );
 
     const extended = decodeExtendedPosition(
       state,
       program,
-      account.data.subarray(8 + POSITION_MIN_SIZE)
+      account.data.subarray(8 + POSITION_MIN_SIZE),
     );
 
     const combinedPositionBinData = combineBaseAndExtendedPositionBinData(
       state,
-      extended
+      extended,
     );
 
     return new PositionV2Wrapper(key, state, extended, combinedPositionBinData);
@@ -104,7 +104,7 @@ export class PositionV2Wrapper implements IPosition {
     public positionAddress: PublicKey,
     public inner: PositionV2,
     public extended: ExtendedPositionBinData[],
-    public combinedPositionBinData: CombinedPositionBinData
+    public combinedPositionBinData: CombinedPositionBinData,
   ) {}
 
   address(): PublicKey {
@@ -176,7 +176,7 @@ export class PositionV2Wrapper implements IPosition {
 
   getBinArrayKeysCoverage(programId: PublicKey): PublicKey[] {
     return this.getBinArrayIndexesCoverage().map(
-      (index) => deriveBinArray(this.lbPair(), index, programId)[0]
+      (index) => deriveBinArray(this.lbPair(), index, programId)[0],
     );
   }
 

@@ -47,10 +47,10 @@ function buildGaussianFromBins(activeBin: number, binIds: number[]) {
 function generateBinLiquidityAllocation(
   gaussian: Gaussian,
   binIds: number[],
-  invert: boolean
+  invert: boolean,
 ) {
   const allocations = binIds.map((bid) =>
-    invert ? 1 / gaussian.pdf(bid) : gaussian.pdf(bid)
+    invert ? 1 / gaussian.pdf(bid) : gaussian.pdf(bid),
   );
   const totalAllocations = allocations.reduce((acc, v) => acc + v, 0);
   // Gaussian impossible to cover 100%, normalized it to have total of 100%
@@ -87,14 +87,17 @@ export function toWeightDistribution(
     xAmountBpsOfTotal: BN;
     yAmountBpsOfTotal: BN;
   }[],
-  binStep: number
+  binStep: number,
 ): { binId: number; weight: number }[] {
   // get all quote amount
   let totalQuote = new BN(0);
   const precision = 1_000_000_000_000;
   const quoteDistributions = distributions.map((bin) => {
     const price = new BN(
-      getPriceOfBinByBinId(bin.binId, binStep).mul(precision).floor().toString()
+      getPriceOfBinByBinId(bin.binId, binStep)
+        .mul(precision)
+        .floor()
+        .toString(),
     );
     const quoteValue = amountX
       .mul(new BN(bin.xAmountBpsOfTotal))
@@ -102,7 +105,7 @@ export function toWeightDistribution(
       .div(new BN(BASIS_POINT_MAX))
       .div(new BN(precision));
     const quoteAmount = quoteValue.add(
-      amountY.mul(new BN(bin.yAmountBpsOfTotal)).div(new BN(BASIS_POINT_MAX))
+      amountY.mul(new BN(bin.yAmountBpsOfTotal)).div(new BN(BASIS_POINT_MAX)),
     );
     totalQuote = totalQuote.add(quoteAmount);
     return {
@@ -118,7 +121,7 @@ export function toWeightDistribution(
   const distributionWeights = quoteDistributions
     .map((bin) => {
       const weight = Math.floor(
-        bin.quoteAmount.mul(new BN(65535)).div(totalQuote).toNumber()
+        bin.quoteAmount.mul(new BN(65535)).div(totalQuote).toNumber(),
       );
       return {
         binId: bin.binId,
@@ -132,11 +135,11 @@ export function toWeightDistribution(
 
 export function calculateSpotDistribution(
   activeBin: number,
-  binIds: number[]
+  binIds: number[],
 ): { binId: number; xAmountBpsOfTotal: BN; yAmountBpsOfTotal: BN }[] {
   if (!binIds.includes(activeBin)) {
     const { div: dist, mod: rem } = new BN(10_000).divmod(
-      new BN(binIds.length)
+      new BN(binIds.length),
     );
     const loss = rem.isZero() ? new BN(0) : new BN(1);
 
@@ -210,7 +213,7 @@ export function calculateSpotDistribution(
 
 export function calculateBidAskDistribution(
   activeBin: number,
-  binIds: number[]
+  binIds: number[],
 ): {
   binId: number;
   xAmountBpsOfTotal: BN;
@@ -265,7 +268,7 @@ export function calculateBidAskDistribution(
         return [xAcc + half, yAcc + half];
       }
     },
-    [0, 0]
+    [0, 0],
   );
 
   // Normalize and convert to BPS
@@ -289,16 +292,16 @@ export function calculateBidAskDistribution(
       }
       return [xAllocations, yAllocations];
     },
-    [[], []]
+    [[], []],
   );
 
   const totalXNormAllocations = normXAllocations.reduce(
     (acc, v) => acc.add(v),
-    new BN(0)
+    new BN(0),
   );
   const totalYNormAllocations = normYAllocations.reduce(
     (acc, v) => acc.add(v),
-    new BN(0)
+    new BN(0),
   );
 
   const xPLoss = new BN(10000).sub(totalXNormAllocations);
@@ -346,7 +349,7 @@ export function calculateBidAskDistribution(
 
 export function calculateNormalDistribution(
   activeBin: number,
-  binIds: number[]
+  binIds: number[],
 ): {
   binId: number;
   xAmountBpsOfTotal: BN;
@@ -408,7 +411,7 @@ export function calculateNormalDistribution(
         return [xAcc + half, yAcc + half];
       }
     },
-    [0, 0]
+    [0, 0],
   );
 
   // Normalize and convert to BPS
@@ -425,16 +428,16 @@ export function calculateNormalDistribution(
       }
       return [xAllocations, yAllocations];
     },
-    [[], []]
+    [[], []],
   );
 
   const normXActiveBinAllocation = normXAllocations.reduce(
     (maxBps, bps) => maxBps.sub(bps),
-    new BN(10_000)
+    new BN(10_000),
   );
   const normYActiveBinAllocation = normYAllocations.reduce(
     (maxBps, bps) => maxBps.sub(bps),
-    new BN(10_000)
+    new BN(10_000),
   );
 
   return binIds.map((binId) => {
@@ -484,7 +487,7 @@ export function fromWeightDistributionToAmountOneSide(
   activeId: number,
   depositForY: boolean,
   mint: Mint,
-  clock: Clock
+  clock: Clock,
 ): { binId: number; amount: BN }[] {
   if (depositForY) {
     return toAmountBidSide(activeId, amount, distributions, mint, clock);
@@ -495,7 +498,7 @@ export function fromWeightDistributionToAmountOneSide(
       amount,
       distributions,
       mint,
-      clock
+      clock,
     );
   }
 }
@@ -525,7 +528,7 @@ export function fromWeightDistributionToAmount(
   amountYInActiveBin: BN,
   mintX: Mint,
   mintY: Mint,
-  clock: Clock
+  clock: Clock,
 ): { binId: number; amountX: BN; amountY: BN }[] {
   // sort distribution
   var distributions = distributions.sort((n1, n2) => {
@@ -543,7 +546,7 @@ export function fromWeightDistributionToAmount(
       amountY,
       distributions,
       mintY,
-      clock
+      clock,
     );
     return amounts.map((bin) => {
       return {
@@ -562,7 +565,7 @@ export function fromWeightDistributionToAmount(
       amountX,
       distributions,
       mintX,
-      clock
+      clock,
     );
     return amounts.map((bin) => {
       return {
@@ -582,6 +585,6 @@ export function fromWeightDistributionToAmount(
     distributions,
     mintX,
     mintY,
-    clock
+    clock,
   );
 }

@@ -25,16 +25,16 @@ export async function getMultipleMintsExtraAccountMetasForTransferHook(
   mintAddressesWithAccountInfo: {
     mintAddress: PublicKey;
     mintAccountInfo: AccountInfo<Buffer>;
-  }[]
+  }[],
 ): Promise<Map<String, AccountMeta[]>> {
   const extraAccountMetas = await Promise.all(
     mintAddressesWithAccountInfo.map(({ mintAddress, mintAccountInfo }) =>
       getExtraAccountMetasForTransferHook(
         connection,
         mintAddress,
-        mintAccountInfo
-      )
-    )
+        mintAccountInfo,
+      ),
+    ),
   );
 
   const mintsWithHookAccountMap = new Map<String, AccountMeta[]>();
@@ -52,11 +52,11 @@ export async function getMultipleMintsExtraAccountMetasForTransferHook(
 export async function getExtraAccountMetasForTransferHook(
   connection: Connection,
   mintAddress: PublicKey,
-  mintAccountInfo: AccountInfo<Buffer>
+  mintAccountInfo: AccountInfo<Buffer>,
 ) {
   if (
     ![TOKEN_PROGRAM_ID.toBase58(), TOKEN_2022_PROGRAM_ID.toBase58()].includes(
-      mintAccountInfo.owner.toBase58()
+      mintAccountInfo.owner.toBase58(),
     )
   ) {
     return [];
@@ -65,7 +65,7 @@ export async function getExtraAccountMetasForTransferHook(
   const mintState = unpackMint(
     mintAddress,
     mintAccountInfo,
-    mintAccountInfo.owner
+    mintAccountInfo.owner,
   );
 
   if (mintAccountInfo.owner.equals(TOKEN_PROGRAM_ID)) {
@@ -86,7 +86,7 @@ export async function getExtraAccountMetasForTransferHook(
       BigInt(0),
       mintState.decimals,
       [],
-      mintAccountInfo.owner
+      mintAccountInfo.owner,
     );
 
     await addExtraAccountMetasForExecute(
@@ -97,7 +97,7 @@ export async function getExtraAccountMetasForTransferHook(
       mintAddress,
       PublicKey.default,
       PublicKey.default,
-      BigInt(0)
+      BigInt(0),
     );
 
     // Only 4 keys needed if it's single signer. https://github.com/solana-labs/solana-program-library/blob/d72289c79a04411c69a8bf1054f7156b6196f9b3/token/js/src/extensions/transferFee/instructions.ts#L251
@@ -134,7 +134,7 @@ function calculatePreFeeAmount(transferFee: TransferFee, postFeeAmount: BN) {
   const ONE_IN_BASIS_POINTS = new BN(MAX_FEE_BASIS_POINTS);
   const numerator = postFeeAmount.mul(ONE_IN_BASIS_POINTS);
   const denominator = ONE_IN_BASIS_POINTS.sub(
-    new BN(transferFee.transferFeeBasisPoints)
+    new BN(transferFee.transferFeeBasisPoints),
   );
 
   const rawPreFeeAmount = numerator
@@ -152,7 +152,7 @@ function calculatePreFeeAmount(transferFee: TransferFee, postFeeAmount: BN) {
 function calculateInverseFee(transferFee: TransferFee, postFeeAmount: BN) {
   const preFeeAmount = calculatePreFeeAmount(transferFee, postFeeAmount);
   return new BN(
-    calculateFee(transferFee, BigInt(preFeeAmount.toString())).toString()
+    calculateFee(transferFee, BigInt(preFeeAmount.toString())).toString(),
   );
 }
 
@@ -164,7 +164,7 @@ interface TransferFeeIncludedAmount {
 export function calculateTransferFeeIncludedAmount(
   transferFeeExcludedAmount: BN,
   mint: Mint,
-  currentEpoch: number
+  currentEpoch: number,
 ): TransferFeeIncludedAmount {
   if (transferFeeExcludedAmount.isZero()) {
     return {
@@ -205,7 +205,7 @@ interface TransferFeeExcludedAmount {
 export function calculateTransferFeeExcludedAmount(
   transferFeeIncludedAmount: BN,
   mint: Mint,
-  currentEpoch: number
+  currentEpoch: number,
 ): TransferFeeExcludedAmount {
   const transferFeeConfig = getTransferFeeConfig(mint);
   if (transferFeeConfig === null) {
@@ -216,16 +216,16 @@ export function calculateTransferFeeExcludedAmount(
   }
 
   const transferFeeIncludedAmountN = BigInt(
-    transferFeeIncludedAmount.toString()
+    transferFeeIncludedAmount.toString(),
   );
 
   const transferFee = calculateFee(
     getEpochFee(transferFeeConfig, BigInt(currentEpoch)),
-    transferFeeIncludedAmountN
+    transferFeeIncludedAmountN,
   );
 
   const transferFeeExcludedAmount = new BN(
-    (transferFeeIncludedAmountN - transferFee).toString()
+    (transferFeeIncludedAmountN - transferFee).toString(),
   );
 
   return {

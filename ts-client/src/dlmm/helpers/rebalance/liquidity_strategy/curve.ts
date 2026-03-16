@@ -52,7 +52,7 @@ function findY0AndDeltaY(
   amountY: BN,
   minDeltaId: BN,
   maxDeltaId: BN,
-  activeId: BN
+  activeId: BN,
 ): BidAskParameters {
   if (minDeltaId.gt(maxDeltaId) || amountY.isZero()) {
     return {
@@ -71,7 +71,7 @@ function findY0AndDeltaY(
       minDeltaId,
       maxDeltaId,
       deltaY,
-      baseY0
+      baseY0,
     );
 
     const totalAmountY = amountInBins.reduce((acc, { amountY }) => {
@@ -94,7 +94,7 @@ function findBaseX0(
   minDeltaId: BN,
   maxDeltaId: BN,
   binStep: BN,
-  activeId: BN
+  activeId: BN,
 ) {
   if (minDeltaId.gt(maxDeltaId) || amountX.lte(new BN(0))) {
     return new BN(0);
@@ -140,7 +140,7 @@ function findX0AndDeltaX(
   minDeltaId: BN,
   maxDeltaId: BN,
   binStep: BN,
-  activeId: BN
+  activeId: BN,
 ) {
   if (minDeltaId.gt(maxDeltaId) || amountX.lte(new BN(0)) || amountX.isZero()) {
     return {
@@ -159,7 +159,7 @@ function findX0AndDeltaX(
       minDeltaId,
       maxDeltaId,
       deltaX,
-      baseX0
+      baseX0,
     );
 
     const totalAmountX = amountInBins.reduce((acc, { amountX }) => {
@@ -185,7 +185,7 @@ export class CurveStrategyParameterBuilder
     minDeltaId: BN,
     maxDeltaId: BN,
     binStep: BN,
-    activeId: BN
+    activeId: BN,
   ): BidAskParameters {
     return findX0AndDeltaX(amountX, minDeltaId, maxDeltaId, binStep, activeId);
   }
@@ -194,7 +194,7 @@ export class CurveStrategyParameterBuilder
     amountY: BN,
     minDeltaId: BN,
     maxDeltaId: BN,
-    activeId: BN
+    activeId: BN,
   ): BidAskParameters {
     return findY0AndDeltaY(amountY, minDeltaId, maxDeltaId, activeId);
   }
@@ -205,7 +205,7 @@ export class CurveStrategyParameterBuilder
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountY: BN
+    amountY: BN,
   ): BidAskParameters & { amountX: BN } {
     // p(m) = (1+b)^-(active_id + m)
     // active_id = x0 * p(0)
@@ -231,7 +231,7 @@ export class CurveStrategyParameterBuilder
       x0,
       new BN(0),
       binStep,
-      favorXInActiveBin
+      favorXInActiveBin,
     ).reduce((acc, bin) => {
       return acc.add(bin.amountX);
     }, new BN(0));
@@ -249,7 +249,7 @@ export class CurveStrategyParameterBuilder
     favorXInActiveBin: boolean,
     minDeltaId: BN,
     maxDeltaId: BN,
-    amountXInQuoteValue: BN
+    amountXInQuoteValue: BN,
   ): BidAskParameters & { amountY: BN } {
     // sum(amounts) = y0 * (m1-m2+1) + delta_y * (m1 * (m1+1)/2 - m2 * (m2-1)/2)
     // set delta_y = -y0 / m1
@@ -283,7 +283,7 @@ export class CurveStrategyParameterBuilder
       new BN(0),
       y0,
       binStep,
-      favorXInActiveBin
+      favorXInActiveBin,
     ).reduce((acc, bin) => {
       return acc.add(bin.amountY);
     }, new BN(0));

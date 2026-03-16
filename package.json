@@ -7,5 +7,10 @@
   "dependencies": {
     "pako": "^2.1.0"
   },
-  "workspaces": ["ts-client"]
+  "workspaces": [
+    "ts-client"
+  ],
+  "devDependencies": {
+    "tsup": "^8.5.0"
+  }
 }

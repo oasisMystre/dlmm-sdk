@@ -26,7 +26,7 @@ export class BalancedStrategyBuilder implements RebalanceStrategyBuilder {
     public yWithdrawBps: BN,
     public strategy: StrategyType,
     public favorXIfImbalance: boolean = false,
-    public favorXInActiveBin: boolean = false
+    public favorXInActiveBin: boolean = false,
   ) {}
 
   // Rebalance to active bin by withdrawing all liquidities and redeposit portion of withdrawn liquidity, together with topup amount
@@ -79,7 +79,7 @@ export class BalancedStrategyBuilder implements RebalanceStrategyBuilder {
       this.binStep,
       this.favorXInActiveBin,
       this.activeId,
-      getLiquidityStrategyParameterBuilder(this.strategy)
+      getLiquidityStrategyParameterBuilder(this.strategy),
     );
 
     const depositParam: RebalanceWithDeposit = {

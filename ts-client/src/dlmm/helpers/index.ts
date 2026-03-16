@@ -82,7 +82,7 @@ export * from "./weightToAmounts";
 
 export function chunks<T>(array: T[], size: number): T[][] {
   return Array.apply(0, new Array(Math.ceil(array.length / size))).map(
-    (_, index) => array.slice(index * size, (index + 1) * size)
+    (_, index) => array.slice(index * size, (index + 1) * size),
   );
 }
 
@@ -94,13 +94,13 @@ export function range<T>(min: number, max: number, mapfn: (i: number) => T) {
 export async function chunkedFetchMultiplePoolAccount(
   program: ClmmProgram,
   pks: PublicKey[],
-  chunkSize: number = 100
+  chunkSize: number = 100,
 ) {
   const accounts = (
     await Promise.all(
       chunks(pks, chunkSize).map((chunk) =>
-        program.account.lbPair.fetchMultiple(chunk)
-      )
+        program.account.lbPair.fetchMultiple(chunk),
+      ),
     )
   ).flat();
 
@@ -110,13 +110,13 @@ export async function chunkedFetchMultiplePoolAccount(
 export async function chunkedFetchMultipleBinArrayBitmapExtensionAccount(
   program: ClmmProgram,
   pks: PublicKey[],
-  chunkSize: number = 100
+  chunkSize: number = 100,
 ) {
   const accounts = (
     await Promise.all(
       chunks(pks, chunkSize).map((chunk) =>
-        program.account.binArrayBitmapExtension.fetchMultiple(chunk)
-      )
+        program.account.binArrayBitmapExtension.fetchMultiple(chunk),
+      ),
     )
   ).flat();
 
@@ -140,7 +140,7 @@ export const getOrCreateATAInstruction = async (
   owner: PublicKey,
   programId?: PublicKey,
   payer: PublicKey = owner,
-  allowOwnerOffCurve = true
+  allowOwnerOffCurve = true,
 ): Promise<GetOrCreateATAResponse> => {
   programId = programId ?? TOKEN_PROGRAM_ID;
   const toAccount = getAssociatedTokenAddressSync(
@@ -148,7 +148,7 @@ export const getOrCreateATAInstruction = async (
     owner,
     allowOwnerOffCurve,
     programId,
-    ASSOCIATED_TOKEN_PROGRAM_ID
+    ASSOCIATED_TOKEN_PROGRAM_ID,
   );
 
   try {
@@ -166,7 +166,7 @@ export const getOrCreateATAInstruction = async (
         owner,
         tokenMint,
         programId,
-        ASSOCIATED_TOKEN_PROGRAM_ID
+        ASSOCIATED_TOKEN_PROGRAM_ID,
       );
 
       return { ataPubKey: toAccount, ix };
@@ -180,7 +180,7 @@ export const getOrCreateATAInstruction = async (
 
 export async function getTokenBalance(
   conn: Connection,
-  tokenAccount: PublicKey
+  tokenAccount: PublicKey,
 ): Promise<bigint> {
   const acc = await getAccount(conn, tokenAccount);
   return acc.amount;
@@ -199,7 +199,7 @@ export const parseLogs = <T>(eventParser: EventParser, logs: string[]) => {
 export const wrapSOLInstruction = (
   from: PublicKey,
   to: PublicKey,
-  amount: bigint
+  amount: bigint,
 ): TransactionInstruction[] => {
   return [
     SystemProgram.transfer({
@@ -223,12 +223,12 @@ export const wrapSOLInstruction = (
 
 export const unwrapSOLInstruction = async (
   owner: PublicKey,
-  allowOwnerOffCurve = true
+  allowOwnerOffCurve = true,
 ) => {
   const wSolATAAccount = getAssociatedTokenAddressSync(
     NATIVE_MINT,
     owner,
-    allowOwnerOffCurve
+    allowOwnerOffCurve,
   );
   if (wSolATAAccount) {
     const closedWrappedSolInstruction = createCloseAccountInstruction(
@@ -236,7 +236,7 @@ export const unwrapSOLInstruction = async (
       owner,
       owner,
       [],
-      TOKEN_PROGRAM_ID
+      TOKEN_PROGRAM_ID,
     );
     return closedWrappedSolInstruction;
   }
@@ -246,13 +246,13 @@ export const unwrapSOLInstruction = async (
 export async function chunkedGetMultipleAccountInfos(
   connection: Connection,
   pks: PublicKey[],
-  chunkSize: number = 100
+  chunkSize: number = 100,
 ) {
   const accountInfos = (
     await Promise.all(
       chunks(pks, chunkSize).map((chunk) =>
-        connection.getMultipleAccountsInfo(chunk)
-      )
+        connection.getMultipleAccountsInfo(chunk),
+      ),
     )
   ).flat();
 
@@ -272,7 +272,7 @@ export const getEstimatedComputeUnitUsageWithBuffer = async (
   instructions: TransactionInstruction[],
   feePayer: PublicKey,
   buffer?: number,
-  altAddress?: PublicKey
+  altAddress?: PublicKey,
 ) => {
   if (!buffer) {
     buffer = 0.1;
@@ -293,7 +293,7 @@ export const getEstimatedComputeUnitUsageWithBuffer = async (
     connection,
     instructions,
     feePayer,
-    altAccounts
+    altAccounts,
   );
 
   let extraComputeUnitBuffer = estimatedComputeUnitUsage * buffer;
@@ -320,16 +320,16 @@ export const getEstimatedComputeUnitIxWithBuffer = async (
   instructions: TransactionInstruction[],
   feePayer: PublicKey,
   buffer?: number,
-  altAddress?: PublicKey
+  altAddress?: PublicKey,
 ) => {
   const units = await getEstimatedComputeUnitUsageWithBuffer(
     connection,
     instructions,
     feePayer,
     buffer,
-    altAddress
-  ).catch((error) => {
-    console.error("Error::getEstimatedComputeUnitUsageWithBuffer", error);
+    altAddress,
+  ).catch(() => {
+    //console.error("Error::getEstimatedComputeUnitUsageWithBuffer", error);
     return 1_400_000;
   });
 
@@ -347,12 +347,12 @@ export function createProgram(connection: Connection, opt?: Opt) {
   const provider = new AnchorProvider(
     connection,
     {} as any,
-    AnchorProvider.defaultOptions()
+    AnchorProvider.defaultOptions(),
   );
 
   return new Program<LbClmm>(
     { ...IDL, address: opt?.programId ?? LBCLMM_PROGRAM_IDS[cluster] },
-    provider
+    provider,
   );
 }
 
@@ -364,16 +364,16 @@ export function decodeAccount<
     | PositionV2
     | Position
     | PresetParameter
-    | PresetParameter2
+    | PresetParameter2,
 >(program: Program<LbClmm>, accountName: AccountName, buffer: Buffer): T {
   return program.coder.accounts.decode(accountName, buffer);
 }
 
 export function getAccountDiscriminator(
-  accountName: AccountName
+  accountName: AccountName,
 ): IdlDiscriminator {
   return IDL.accounts.find(
-    (acc) => acc.name.toLowerCase() === accountName.toLowerCase()
+    (acc) => acc.name.toLowerCase() === accountName.toLowerCase(),
   )?.discriminator;
 }
 
@@ -406,7 +406,7 @@ export function capSlippagePercentage(slippage: number) {
 export function getAndCapMaxActiveBinSlippage(
   slippagePercentage: number,
   binStep: number,
-  maxActiveBinSlippage: number
+  maxActiveBinSlippage: number,
 ) {
   return slippagePercentage
     ? Math.ceil(slippagePercentage / (binStep / 100))
@@ -444,7 +444,7 @@ export function getSlippageMaxAmount(amount: BN, slippage: number) {
       .mul(new Decimal(100 + slippage))
       .div(new Decimal(100))
       .floor()
-      .toString()
+      .toString(),
   );
 
   return slippageAppliedAmount;
@@ -464,7 +464,7 @@ export function getSlippageMinAmount(amount: BN, slippage: number) {
       .mul(new Decimal(100 - slippage))
       .div(new Decimal(100))
       .ceil()
-      .toString()
+      .toString(),
   );
 }
 
@@ -499,7 +499,7 @@ export function resetUninvolvedLiquidityParams(
   minDeltaId: BN,
   maxDeltaId: BN,
   favorXInActiveId: boolean,
-  params: LiquidityStrategyParameters
+  params: LiquidityStrategyParameters,
 ) {
   const endBidSideDeltaId = favorXInActiveId ? new BN(-1) : new BN(0);
   const startAskSideDeltaId = endBidSideDeltaId.addn(1);
@@ -540,7 +540,7 @@ export async function chunkDepositWithRebalanceEndpoint(
   payer: PublicKey,
   // When isParallel = false, instructions must be executed sequentially
   isParallel: boolean,
-  skipSolWrappingOperation: boolean = false
+  skipSolWrappingOperation: boolean = false,
 ) {
   const { slices, accounts: transferHookAccounts } =
     dlmm.getPotentialToken2022IxDataAndAccounts(ActionType.Liquidity);
@@ -549,14 +549,14 @@ export async function chunkDepositWithRebalanceEndpoint(
     dlmm.lbPair.tokenXMint,
     owner,
     true,
-    dlmm.tokenX.owner
+    dlmm.tokenX.owner,
   );
 
   const userTokenY = getAssociatedTokenAddressSync(
     dlmm.lbPair.tokenYMint,
     owner,
     true,
-    dlmm.tokenY.owner
+    dlmm.tokenY.owner,
   );
 
   const createUserTokenXIx = createAssociatedTokenAccountIdempotentInstruction(
@@ -564,7 +564,7 @@ export async function chunkDepositWithRebalanceEndpoint(
     userTokenX,
     owner,
     dlmm.lbPair.tokenXMint,
-    dlmm.tokenX.owner
+    dlmm.tokenX.owner,
   );
 
   const createUserTokenYIx = createAssociatedTokenAccountIdempotentInstruction(
@@ -572,12 +572,12 @@ export async function chunkDepositWithRebalanceEndpoint(
     userTokenY,
     owner,
     dlmm.lbPair.tokenYMint,
-    dlmm.tokenY.owner
+    dlmm.tokenY.owner,
   );
 
   const bitmapPubkey = deriveBinArrayBitmapExtension(
     dlmm.pubkey,
-    dlmm.program.programId
+    dlmm.program.programId,
   )[0];
 
   let calculatedAddLiquidityCU = 0;
@@ -596,13 +596,13 @@ export async function chunkDepositWithRebalanceEndpoint(
 
     const binArrayIndexes = getBinArrayIndexesCoverage(
       new BN(chunkMinBinId),
-      new BN(chunkMaxBinId)
+      new BN(chunkMaxBinId),
     );
 
     const overflowDefaultBinArrayBitmap = binArrayIndexes.reduce(
       (acc, binArrayIndex) =>
         acc || isOverflowDefaultBinArrayBitmap(binArrayIndex),
-      false
+      false,
     );
 
     if (overflowDefaultBinArrayBitmap) {
@@ -620,7 +620,7 @@ export async function chunkDepositWithRebalanceEndpoint(
     }
 
     const binArrayPubkeys = binArrayIndexes.map(
-      (index) => deriveBinArray(dlmm.pubkey, index, dlmm.program.programId)[0]
+      (index) => deriveBinArray(dlmm.pubkey, index, dlmm.program.programId)[0],
     );
 
     for (const [idx, binArrayPubkey] of binArrayPubkeys.entries()) {
@@ -651,7 +651,7 @@ export async function chunkDepositWithRebalanceEndpoint(
       strategy.singleSidedX,
       {
         ...liquidityStrategyParameters,
-      }
+      },
     );
 
     const { bitFlag, ...baseAndDelta } =
@@ -678,7 +678,7 @@ export async function chunkDepositWithRebalanceEndpoint(
       x0,
       y0,
       new BN(dlmm.lbPair.binStep),
-      strategy.singleSidedX
+      strategy.singleSidedX,
     ).reduce(
       (acc, bin) => {
         return {
@@ -689,29 +689,29 @@ export async function chunkDepositWithRebalanceEndpoint(
       {
         totalXAmount: new BN(0),
         totalYAmount: new BN(0),
-      }
+      },
     );
 
     const totalXAmountIncludeTransferFee = calculateTransferFeeIncludedAmount(
       totalXAmount,
       dlmm.tokenX.mint,
-      dlmm.clock.epoch.toNumber()
+      dlmm.clock.epoch.toNumber(),
     ).amount;
 
     const totalYAmountIncludeTransferFee = calculateTransferFeeIncludedAmount(
       totalYAmount,
       dlmm.tokenY.mint,
-      dlmm.clock.epoch.toNumber()
+      dlmm.clock.epoch.toNumber(),
     ).amount;
 
     const maxDepositXAmount = getSlippageMaxAmount(
       totalXAmountIncludeTransferFee,
-      slippagePercentage
+      slippagePercentage,
     );
 
     const maxDepositYAmount = getSlippageMaxAmount(
       totalYAmountIncludeTransferFee,
-      slippagePercentage
+      slippagePercentage,
     );
 
     let shrinkMode: ShrinkMode;
@@ -746,7 +746,7 @@ export async function chunkDepositWithRebalanceEndpoint(
         },
         {
           slices,
-        }
+        },
       )
       .accountsPartial({
         binArrayBitmapExtension:
@@ -791,7 +791,7 @@ export async function chunkDepositWithRebalanceEndpoint(
       const wrapSOLIx = wrapSOLInstruction(
         owner,
         userTokenX,
-        BigInt(totalXAmount.toString())
+        BigInt(totalXAmount.toString()),
       );
 
       if (!isParallel) {
@@ -807,7 +807,7 @@ export async function chunkDepositWithRebalanceEndpoint(
       const wrapSOLIx = wrapSOLInstruction(
         owner,
         userTokenY,
-        BigInt(totalYAmount.toString())
+        BigInt(totalYAmount.toString()),
       );
 
       if (!isParallel) {
@@ -829,8 +829,8 @@ export async function chunkDepositWithRebalanceEndpoint(
           owner,
           owner,
           [],
-          TOKEN_PROGRAM_ID
-        )
+          TOKEN_PROGRAM_ID,
+        ),
       );
     }
 
@@ -845,8 +845,8 @@ export async function chunkDepositWithRebalanceEndpoint(
           owner,
           owner,
           [],
-          TOKEN_PROGRAM_ID
-        )
+          TOKEN_PROGRAM_ID,
+        ),
       );
     }
 
@@ -854,7 +854,7 @@ export async function chunkDepositWithRebalanceEndpoint(
       addLiquidityIxs.unshift(
         ComputeBudgetProgram.setComputeUnitLimit({
           units: Math.min(calculatedAddLiquidityCU, MAX_CU),
-        })
+        }),
       );
     }
 

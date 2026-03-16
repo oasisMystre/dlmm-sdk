@@ -17,7 +17,7 @@ export class DLMMError extends Error {
 
     if (error instanceof Error) {
       const anchorError = AnchorError.parse(
-        JSON.parse(JSON.stringify(error)).logs as string[]
+        JSON.parse(JSON.stringify(error)).logs as string[],
       );
 
       if (

@@ -39,7 +39,7 @@ export function buildBitFlagAndNegateStrategyParameters(
   x0: BN,
   y0: BN,
   deltaX: BN,
-  deltaY: BN
+  deltaY: BN,
 ): {
   bitFlag: number;
   x0: BN;
@@ -85,7 +85,7 @@ export interface AmountIntoBin {
 }
 
 function toRebalancePositionBinData(
-  positionData: PositionData
+  positionData: PositionData,
 ): RebalancePositionBinData[] {
   return positionData.positionBinData.map(
     ({
@@ -105,12 +105,12 @@ function toRebalancePositionBinData(
         amountX: new BN(positionXAmount),
         amountY: new BN(positionYAmount),
         claimableRewardAmount: positionRewardAmount.map(
-          (amount) => new BN(amount)
+          (amount) => new BN(amount),
         ),
         claimableFeeXAmount: new BN(positionFeeXAmount),
         claimableFeeYAmount: new BN(positionFeeYAmount),
       };
-    }
+    },
   );
 }
 
@@ -137,7 +137,7 @@ function getDepositBinIds(activeId: BN, deposits: RebalanceWithDeposit[]) {
 }
 
 function findMinMaxBinIdWithLiquidity(
-  rebalancePositionBinData: RebalancePositionBinData[]
+  rebalancePositionBinData: RebalancePositionBinData[],
 ) {
   let minBinId = null;
   let maxBinId = null;
@@ -184,7 +184,7 @@ export function getAmountInBinsBidSide(
   minDeltaId: BN,
   maxDeltaId: BN,
   deltaY: BN,
-  y0: BN
+  y0: BN,
 ) {
   const amountInBins: AmountIntoBin[] = [];
 
@@ -211,7 +211,7 @@ export function getAmountInBinsAskSide(
   minDeltaId: BN,
   maxDeltaId: BN,
   deltaX: BN,
-  x0: BN
+  x0: BN,
 ) {
   const binCount = maxDeltaId.sub(minDeltaId).add(new BN(1));
 
@@ -251,7 +251,7 @@ export function toAmountIntoBins(
   x0: BN,
   y0: BN,
   binStep: BN,
-  favorXInActiveBin: boolean
+  favorXInActiveBin: boolean,
 ): AmountIntoBin[] {
   if (onlyDepositToBidSide(maxDeltaId, favorXInActiveBin)) {
     return getAmountInBinsBidSide(activeId, minDeltaId, maxDeltaId, deltaY, y0);
@@ -264,7 +264,7 @@ export function toAmountIntoBins(
       minDeltaId,
       maxDeltaId,
       deltaX,
-      x0
+      x0,
     );
   }
 
@@ -277,7 +277,7 @@ export function toAmountIntoBins(
     minDeltaId,
     new BN(bidSideEndDeltaId),
     deltaY,
-    y0
+    y0,
   );
 
   const amountInBinsAskSide = getAmountInBinsAskSide(
@@ -286,7 +286,7 @@ export function toAmountIntoBins(
     new BN(askSideStartDeltaId),
     maxDeltaId,
     deltaX,
-    x0
+    x0,
   );
 
   return amountInBinsBidSide.concat(amountInBinsAskSide);
@@ -305,14 +305,14 @@ function computeCompositionFee(
   outAmountX: BN,
   inAmountX: BN,
   outAmountY: BN,
-  inAmountY: BN
+  inAmountY: BN,
 ) {
   if (outAmountX.gt(inAmountX)) {
     const delta = inAmountY.sub(outAmountY);
     const totalFeeRate = getTotalFee(
       binStep.toNumber(),
       sParameters,
-      vParameters
+      vParameters,
     );
     const feeAmount = delta.mul(totalFeeRate);
     return feeAmount
@@ -327,7 +327,7 @@ function simulateDepositBin(
   binStep: BN,
   amountX: BN,
   amountY: BN,
-  bin: Bin
+  bin: Bin,
 ) {
   if (!bin) {
     return {
@@ -353,10 +353,10 @@ function simulateDepositBin(
   const updatedBinSupply = bin.liquiditySupply.add(liquidityShare);
 
   let amountXIntoBin = liquidityShare.mul(
-    updatedBinXAmount.div(updatedBinSupply)
+    updatedBinXAmount.div(updatedBinSupply),
   );
   let amountYIntoBin = liquidityShare.mul(
-    updatedBinYAmount.div(updatedBinSupply)
+    updatedBinYAmount.div(updatedBinSupply),
   );
 
   if (amountXIntoBin.gt(amountX)) {
@@ -411,7 +411,7 @@ export class RebalancePosition {
     activeBin: Bin,
     shouldClaimFee: boolean,
     shouldClaimReward: boolean,
-    currentTimestamp: BN
+    currentTimestamp: BN,
   ) {
     this.address = positionAddress;
     this.rebalancePositionBinData = toRebalancePositionBinData(positionData);
@@ -426,7 +426,7 @@ export class RebalancePosition {
   }
 
   static async create(
-    params: CreateRebalancePositionParams
+    params: CreateRebalancePositionParams,
   ): Promise<RebalancePosition> {
     const {
       program,
@@ -449,17 +449,16 @@ export class RebalancePosition {
     const [activeBinArrayPubkey] = deriveBinArray(
       pairAddress,
       activeBinArrayIdx,
-      program.programId
+      program.programId,
     );
-    const activeBinArrayState = await program.account.binArray.fetch(
-      activeBinArrayPubkey
-    );
+    const activeBinArrayState =
+      await program.account.binArray.fetch(activeBinArrayPubkey);
     const [lowerBinId, upperBinId] =
       getBinArrayLowerUpperBinId(activeBinArrayIdx);
     const idx = getBinIdIndexInBinArray(
       new BN(lbPair.activeId),
       lowerBinId,
-      upperBinId
+      upperBinId,
     );
     const activeBin = activeBinArrayState[idx.toNumber()];
 
@@ -470,7 +469,7 @@ export class RebalancePosition {
       activeBin,
       shouldClaimFee,
       shouldClaimReward,
-      clock.unixTimestamp
+      clock.unixTimestamp,
     );
   }
 
@@ -479,7 +478,7 @@ export class RebalancePosition {
     tokenXDecimal: BN,
     tokenYDecimal: BN,
     deposits: RebalanceWithDeposit[],
-    simulatedWithdrawResult: SimulateWithdrawResult
+    simulatedWithdrawResult: SimulateWithdrawResult,
   ): {
     result: SimulateDepositResult;
     depositParams: RebalanceAddLiquidityParam[];
@@ -499,7 +498,7 @@ export class RebalancePosition {
         new BN(depositMaxBinId),
         binStep,
         tokenXDecimal,
-        tokenYDecimal
+        tokenYDecimal,
       );
     }
 
@@ -521,7 +520,7 @@ export class RebalancePosition {
         x0,
         y0,
         deltaX,
-        deltaY
+        deltaY,
       );
 
       addLiquidityParam.push({
@@ -545,7 +544,7 @@ export class RebalancePosition {
         x0,
         y0,
         binStep,
-        favorXInActiveBin
+        favorXInActiveBin,
       );
 
       for (const { binId, amountX, amountY } of amountIntoBins) {
@@ -553,7 +552,7 @@ export class RebalancePosition {
         totalAmountYDeposited = totalAmountYDeposited.add(amountY);
 
         const idx = this.rebalancePositionBinData.findIndex(
-          (data) => data.binId == binId.toNumber()
+          (data) => data.binId == binId.toNumber(),
         );
 
         if (binId.eq(activeId)) {
@@ -563,19 +562,19 @@ export class RebalancePosition {
             activeId.toNumber(),
             vParameters,
             sParameters,
-            this.currentTimestamp.toNumber()
+            this.currentTimestamp.toNumber(),
           );
           DLMM.updateVolatilityAccumulator(
             vParameters,
             sParameters,
-            activeId.toNumber()
+            activeId.toNumber(),
           );
           const { amountXIntoBin, amountYIntoBin } = simulateDepositBin(
             binId,
             binStep,
             amountX,
             amountY,
-            this.activeBin
+            this.activeBin,
           );
           const feeY = computeCompositionFee(
             binStep,
@@ -584,7 +583,7 @@ export class RebalancePosition {
             amountXIntoBin,
             amountX,
             amountYIntoBin,
-            amountY
+            amountY,
           );
           const feeX = computeCompositionFee(
             binStep,
@@ -593,17 +592,17 @@ export class RebalancePosition {
             amountYIntoBin,
             amountY,
             amountXIntoBin,
-            amountX
+            amountX,
           );
           const amountXIntoBinExcludeFee = amountXIntoBin.sub(feeX);
           const amountYIntoBinExcludeFee = amountYIntoBin.sub(feeY);
           this.rebalancePositionBinData[idx].amountX =
             this.rebalancePositionBinData[idx].amountX.add(
-              amountXIntoBinExcludeFee
+              amountXIntoBinExcludeFee,
             );
           this.rebalancePositionBinData[idx].amountY =
             this.rebalancePositionBinData[idx].amountY.add(
-              amountYIntoBinExcludeFee
+              amountYIntoBinExcludeFee,
             );
         } else {
           this.rebalancePositionBinData[idx].amountX =
@@ -621,24 +620,24 @@ export class RebalancePosition {
 
     if (actualTotalAmountXDeposited.gt(actualLiquidityAndFeeXWithdrawn)) {
       actualTotalAmountXDeposited = actualTotalAmountXDeposited.sub(
-        actualLiquidityAndFeeXWithdrawn
+        actualLiquidityAndFeeXWithdrawn,
       );
       actualLiquidityAndFeeXWithdrawn = new BN(0);
     } else {
       actualLiquidityAndFeeXWithdrawn = actualLiquidityAndFeeXWithdrawn.sub(
-        actualTotalAmountXDeposited
+        actualTotalAmountXDeposited,
       );
       actualTotalAmountXDeposited = new BN(0);
     }
 
     if (actualTotalAmountYDeposited.gt(actualLiquidityAndFeeYWithdrawn)) {
       actualTotalAmountYDeposited = actualTotalAmountYDeposited.sub(
-        actualLiquidityAndFeeYWithdrawn
+        actualLiquidityAndFeeYWithdrawn,
       );
       actualLiquidityAndFeeYWithdrawn = new BN(0);
     } else {
       actualLiquidityAndFeeYWithdrawn = actualLiquidityAndFeeYWithdrawn.sub(
-        actualTotalAmountYDeposited
+        actualTotalAmountYDeposited,
       );
       actualTotalAmountYDeposited = new BN(0);
     }
@@ -661,20 +660,20 @@ export class RebalancePosition {
     depositMaxBinId: BN,
     binStep: BN,
     tokenXDecimal: BN,
-    tokenYDecimal: BN
+    tokenYDecimal: BN,
   ) {
     const tokenXMultiplier = new Decimal(10 ** tokenXDecimal.toNumber());
     const tokenYMultiplier = new Decimal(10 ** tokenYDecimal.toNumber());
 
     const [minBinId, maxBinId] = findMinMaxBinIdWithLiquidity(
-      this.rebalancePositionBinData
+      this.rebalancePositionBinData,
     );
 
     const newMinBinId = new BN(
-      Math.min(depositMinBinId.toNumber(), minBinId ?? Number.MAX_SAFE_INTEGER)
+      Math.min(depositMinBinId.toNumber(), minBinId ?? Number.MAX_SAFE_INTEGER),
     );
     const newMaxBinId = new BN(
-      Math.max(depositMaxBinId.toNumber(), maxBinId ?? Number.MIN_SAFE_INTEGER)
+      Math.max(depositMaxBinId.toNumber(), maxBinId ?? Number.MIN_SAFE_INTEGER),
     );
 
     if (newMinBinId.lt(this.lowerBinId)) {
@@ -683,7 +682,7 @@ export class RebalancePosition {
         const binId = this.lowerBinId.subn(i);
         const price = getPriceOfBinByBinId(
           binId.toNumber(),
-          binStep.toNumber()
+          binStep.toNumber(),
         );
         const adjustedPrice = price.mul(tokenXMultiplier).div(tokenYMultiplier);
 
@@ -711,7 +710,7 @@ export class RebalancePosition {
         const binId = this.upperBinId.addn(i);
         const price = getPriceOfBinByBinId(
           binId.toNumber(),
-          binStep.toNumber()
+          binStep.toNumber(),
         );
         const adjustedPrice = price.mul(tokenXMultiplier).div(tokenYMultiplier);
 
@@ -752,12 +751,12 @@ export class RebalancePosition {
       const toBinId = maxBinId ?? activeId;
 
       const binIds = binRangeToBinIdArray(fromBinId, toBinId).filter(
-        (binId) => binId.gte(this.lowerBinId) && binId.lte(this.upperBinId)
+        (binId) => binId.gte(this.lowerBinId) && binId.lte(this.upperBinId),
       );
 
       for (const binId of binIds) {
         const idx = this.rebalancePositionBinData.findIndex(
-          (b) => b.binId === binId.toNumber()
+          (b) => b.binId === binId.toNumber(),
         );
 
         const binData = this.rebalancePositionBinData[idx];
@@ -777,10 +776,10 @@ export class RebalancePosition {
         // 2. Claim fee
         if (this.shouldClaimFee) {
           liquidityAndFeeXWithdrawn = liquidityAndFeeXWithdrawn.add(
-            binData.claimableFeeXAmount
+            binData.claimableFeeXAmount,
           );
           liquidityAndFeeYWithdrawn = liquidityAndFeeYWithdrawn.add(
-            binData.claimableFeeYAmount
+            binData.claimableFeeYAmount,
           );
 
           binData.claimableFeeXAmount = new BN(0);
@@ -808,7 +807,7 @@ export class RebalancePosition {
           bps: bps.toNumber(),
           padding: Array(16).fill(0),
         };
-      }
+      },
     );
 
     return {
@@ -827,7 +826,7 @@ export class RebalancePosition {
     tokenXDecimal: BN,
     tokenYDecimal: BN,
     withdraws: RebalanceWithWithdraw[],
-    deposits: RebalanceWithDeposit[]
+    deposits: RebalanceWithDeposit[],
   ): Promise<SimulateRebalanceResp> {
     if (withdraws.length == 0 && deposits.length == 0) {
       throw "No rebalance action";
@@ -840,7 +839,7 @@ export class RebalancePosition {
 
     const beforeWidth = getPositionWidthWithMinWidth(
       this.lowerBinId.toNumber(),
-      this.upperBinId.toNumber()
+      this.upperBinId.toNumber(),
     );
 
     const { withdrawParams, result: withdrawResult } =
@@ -851,12 +850,12 @@ export class RebalancePosition {
       tokenXDecimal,
       tokenYDecimal,
       deposits,
-      withdrawResult
+      withdrawResult,
     );
 
     const afterWidth = getPositionWidthWithMinWidth(
       this.lowerBinId.toNumber(),
-      this.upperBinId.toNumber()
+      this.upperBinId.toNumber(),
     );
 
     const widthDelta = afterWidth - beforeWidth;
@@ -871,7 +870,7 @@ export class RebalancePosition {
       ]);
 
       const lamportChanges = new BN(rentExemptionLamports).sub(
-        new BN(minimumLamports)
+        new BN(minimumLamports),
       );
 
       if (widthDelta > 0) {
@@ -924,10 +923,10 @@ export class RebalancePosition {
 
     for (const binData of this.rebalancePositionBinData) {
       totalRewardAmounts[0] = totalRewardAmounts[0].add(
-        binData.claimableRewardAmount[0]
+        binData.claimableRewardAmount[0],
       );
       totalRewardAmounts[1] = totalRewardAmounts[1].add(
-        binData.claimableRewardAmount[1]
+        binData.claimableRewardAmount[1],
       );
     }
 
@@ -942,7 +941,7 @@ function getPositionWidthWithMinWidth(lowerBinId: number, upperBinId: number) {
 
 function validateAndSortRebalanceDeposit(deposits: RebalanceWithDeposit[]) {
   const sortedDeposits = deposits.sort((a, b) =>
-    a.minDeltaId.sub(b.minDeltaId).toNumber()
+    a.minDeltaId.sub(b.minDeltaId).toNumber(),
   );
 
   for (const deposit of deposits) {
@@ -965,7 +964,7 @@ function validateAndSortRebalanceDeposit(deposits: RebalanceWithDeposit[]) {
 
 function validateAndSortRebalanceWithdraw(
   withdraws: RebalanceWithWithdraw[],
-  activeId: BN
+  activeId: BN,
 ) {
   const filledWithdraws: RebalanceWithWithdraw[] = [];
 
@@ -1079,7 +1078,7 @@ export function getRebalanceBinArrayIndexesAndBitmapCoverage(
   removes: RebalanceRemoveLiquidityParam[],
   activeId: number,
   pairAddress: PublicKey,
-  programId: PublicKey
+  programId: PublicKey,
 ): {
   binArrayIndexes: BN[];
   binArrayBitmap: PublicKey;
@@ -1135,7 +1134,7 @@ export function getRebalanceBinArrayIndexesAndBitmapCoverage(
   const binArrayIndexes = Array.from(indexMap.keys()).map((idx) => new BN(idx));
 
   const requireBitmapExtension = binArrayIndexes.some((index) =>
-    isOverflowDefaultBinArrayBitmap(new BN(index))
+    isOverflowDefaultBinArrayBitmap(new BN(index)),
   );
 
   return {

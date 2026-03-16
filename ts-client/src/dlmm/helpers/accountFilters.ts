@@ -4,7 +4,7 @@ import BN from "bn.js";
 import { getAccountDiscriminator } from ".";
 
 export const presetParameter2BinStepFilter = (
-  binStep: BN
+  binStep: BN,
 ): GetProgramAccountsFilter => {
   return {
     memcmp: {
@@ -15,7 +15,7 @@ export const presetParameter2BinStepFilter = (
 };
 
 export const presetParameter2BaseFactorFilter = (
-  baseFactor: BN
+  baseFactor: BN,
 ): GetProgramAccountsFilter => {
   return {
     memcmp: {
@@ -26,7 +26,7 @@ export const presetParameter2BaseFactorFilter = (
 };
 
 export const presetParameter2BaseFeePowerFactor = (
-  baseFeePowerFactor: BN
+  baseFeePowerFactor: BN,
 ): GetProgramAccountsFilter => {
   return {
     memcmp: {
@@ -37,7 +37,7 @@ export const presetParameter2BaseFeePowerFactor = (
 };
 
 export const binArrayLbPairFilter = (
-  lbPair: PublicKey
+  lbPair: PublicKey,
 ): GetProgramAccountsFilter => {
   return {
     memcmp: {
@@ -48,7 +48,7 @@ export const binArrayLbPairFilter = (
 };
 
 export const positionOwnerFilter = (
-  owner: PublicKey
+  owner: PublicKey,
 ): GetProgramAccountsFilter => {
   return {
     memcmp: {
@@ -59,7 +59,7 @@ export const positionOwnerFilter = (
 };
 
 export const positionLbPairFilter = (
-  lbPair: PublicKey
+  lbPair: PublicKey,
 ): GetProgramAccountsFilter => {
   return {
     memcmp: {

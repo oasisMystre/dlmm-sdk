@@ -22,7 +22,7 @@ export function toAmountBidSide(
   totalAmount: BN,
   distributions: { binId: number; weight: number }[],
   mintY: Mint,
-  clock: Clock
+  clock: Clock,
 ): {
   binId: number;
   amount: BN;
@@ -30,7 +30,7 @@ export function toAmountBidSide(
   totalAmount = calculateTransferFeeExcludedAmount(
     totalAmount,
     mintY,
-    clock.epoch.toNumber()
+    clock.epoch.toNumber(),
   ).amount;
 
   // get sum of weight
@@ -54,7 +54,7 @@ export function toAmountBidSide(
           new Decimal(totalAmount.toString())
             .mul(new Decimal(bin.weight).div(totalWeight))
             .floor()
-            .toString()
+            .toString(),
         ),
       };
     }
@@ -76,7 +76,7 @@ export function toAmountAskSide(
   totalAmount: BN,
   distributions: { binId: number; weight: number }[],
   mintX: Mint,
-  clock: Clock
+  clock: Clock,
 ): {
   binId: number;
   amount: BN;
@@ -84,7 +84,7 @@ export function toAmountAskSide(
   totalAmount = calculateTransferFeeExcludedAmount(
     totalAmount,
     mintX,
-    clock.epoch.toNumber()
+    clock.epoch.toNumber(),
   ).amount;
 
   // get sum of weight
@@ -118,7 +118,7 @@ export function toAmountAskSide(
             .mul(weightPerPrice)
             .div(totalWeight)
             .floor()
-            .toString()
+            .toString(),
         ),
       };
     }
@@ -152,7 +152,7 @@ export function toAmountBothSide(
   distributions: { binId: number; weight: number }[],
   mintX: Mint,
   mintY: Mint,
-  clock: Clock
+  clock: Clock,
 ): {
   binId: number;
   amountX: BN;
@@ -165,7 +165,7 @@ export function toAmountBothSide(
       amountY,
       distributions,
       mintY,
-      clock
+      clock,
     );
     return amounts.map((bin) => {
       return {
@@ -183,7 +183,7 @@ export function toAmountBothSide(
       amountX,
       distributions,
       mintX,
-      clock
+      clock,
     );
     return amounts.map((bin) => {
       return {
@@ -197,13 +197,13 @@ export function toAmountBothSide(
   amountX = calculateTransferFeeIncludedAmount(
     amountX,
     mintX,
-    clock.epoch.toNumber()
+    clock.epoch.toNumber(),
   ).amount;
 
   amountY = calculateTransferFeeIncludedAmount(
     amountY,
     mintY,
-    clock.epoch.toNumber()
+    clock.epoch.toNumber(),
   ).amount;
 
   const activeBins = distributions.filter((element) => {
@@ -224,14 +224,14 @@ export function toAmountBothSide(
 
       if (!amountXInActiveBin.isZero()) {
         wx0 = new Decimal(activeBin.weight).div(
-          p0.add(amountYInActiveBinDec.div(amountXInActiveBinDec))
+          p0.add(amountYInActiveBinDec.div(amountXInActiveBinDec)),
         );
       }
       if (!amountYInActiveBin.isZero()) {
         wy0 = new Decimal(activeBin.weight).div(
           new Decimal(1).add(
-            p0.mul(amountXInActiveBinDec).div(amountYInActiveBinDec)
-          )
+            p0.mul(amountXInActiveBinDec).div(amountYInActiveBinDec),
+          ),
         );
       }
     }
@@ -324,7 +324,7 @@ export function autoFillYByWeight(
   amountX: BN,
   amountXInActiveBin: BN,
   amountYInActiveBin: BN,
-  distributions: { binId: number; weight: number }[]
+  distributions: { binId: number; weight: number }[],
 ): BN {
   const activeBins = distributions.filter((element) => {
     return element.binId === activeId;
@@ -344,14 +344,14 @@ export function autoFillYByWeight(
 
       if (!amountXInActiveBin.isZero()) {
         wx0 = new Decimal(activeBin.weight).div(
-          p0.add(amountYInActiveBinDec.div(amountXInActiveBinDec))
+          p0.add(amountYInActiveBinDec.div(amountXInActiveBinDec)),
         );
       }
       if (!amountYInActiveBin.isZero()) {
         wy0 = new Decimal(activeBin.weight).div(
           new Decimal(1).add(
-            p0.mul(amountXInActiveBinDec).div(amountYInActiveBinDec)
-          )
+            p0.mul(amountXInActiveBinDec).div(amountYInActiveBinDec),
+          ),
         );
       }
     }
@@ -399,7 +399,7 @@ export function autoFillXByWeight(
   amountY: BN,
   amountXInActiveBin: BN,
   amountYInActiveBin: BN,
-  distributions: { binId: number; weight: number }[]
+  distributions: { binId: number; weight: number }[],
 ): BN {
   const activeBins = distributions.filter((element) => {
     return element.binId === activeId;
@@ -419,14 +419,14 @@ export function autoFillXByWeight(
 
       if (!amountXInActiveBin.isZero()) {
         wx0 = new Decimal(activeBin.weight).div(
-          p0.add(amountYInActiveBinDec.div(amountXInActiveBinDec))
+          p0.add(amountYInActiveBinDec.div(amountXInActiveBinDec)),
         );
       }
       if (!amountYInActiveBin.isZero()) {
         wy0 = new Decimal(activeBin.weight).div(
           new Decimal(1).add(
-            p0.mul(amountXInActiveBinDec).div(amountYInActiveBinDec)
-          )
+            p0.mul(amountXInActiveBinDec).div(amountYInActiveBinDec),
+          ),
         );
       }
     }

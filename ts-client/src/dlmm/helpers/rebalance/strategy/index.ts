@@ -22,6 +22,6 @@ export function capBps(bps: BN) {
   return bps.lt(new BN(0))
     ? new BN(0)
     : bps.gt(MAX_BPS)
-    ? new BN(MAX_BPS)
-    : bps;
+      ? new BN(MAX_BPS)
+      : bps;
 }

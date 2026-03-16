@@ -19,7 +19,7 @@ export function getBaseFee(binStep: number, sParameter: sParameters) {
 export function getVariableFee(
   binStep: number,
   sParameter: sParameters,
-  vParameter: vParameters
+  vParameter: vParameters,
 ) {
   if (sParameter.variableFeeControl > 0) {
     const square_vfa_bin = new BN(vParameter.volatilityAccumulator)
@@ -35,10 +35,10 @@ export function getVariableFee(
 export function getTotalFee(
   binStep: number,
   sParameter: sParameters,
-  vParameter: vParameters
+  vParameter: vParameters,
 ) {
   const totalFee = getBaseFee(binStep, sParameter).add(
-    getVariableFee(binStep, sParameter, vParameter)
+    getVariableFee(binStep, sParameter, vParameter),
   );
   return totalFee.gt(MAX_FEE_RATE) ? MAX_FEE_RATE : totalFee;
 }
@@ -47,7 +47,7 @@ export function computeFee(
   binStep: number,
   sParameter: sParameters,
   vParameter: vParameters,
-  inAmount: BN
+  inAmount: BN,
 ) {
   const totalFee = getTotalFee(binStep, sParameter, vParameter);
   const denominator = FEE_PRECISION.sub(totalFee);
@@ -63,7 +63,7 @@ export function computeFeeFromAmount(
   binStep: number,
   sParameter: sParameters,
   vParameter: vParameters,
-  inAmountWithFees: BN
+  inAmountWithFees: BN,
 ) {
   const totalFee = getTotalFee(binStep, sParameter, vParameter);
   return inAmountWithFees
@@ -84,7 +84,7 @@ export function swapExactOutQuoteAtBin(
   sParameter: sParameters,
   vParameter: vParameters,
   outAmount: BN,
-  swapForY: boolean
+  swapForY: boolean,
 ): {
   amountIn: BN;
   amountOut: BN;
@@ -148,7 +148,7 @@ export function swapExactInQuoteAtBin(
   sParameter: sParameters,
   vParameter: vParameters,
   inAmount: BN,
-  swapForY: boolean
+  swapForY: boolean,
 ): {
   amountIn: BN;
   amountOut: BN;

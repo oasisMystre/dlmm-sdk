@@ -17,12 +17,12 @@ export async function getTokensMintFromPoolAddress(
   opt?: {
     cluster?: Cluster;
     programId?: PublicKey;
-  }
+  },
 ) {
   const program = createProgram(connection, opt);
 
   const poolAccount = await program.account.lbPair.fetchNullable(
-    new PublicKey(poolAddress)
+    new PublicKey(poolAddress),
   );
 
   if (!poolAccount) throw new Error("Pool account not found");
