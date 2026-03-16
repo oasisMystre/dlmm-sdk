@@ -5,10 +5,10 @@
  * IDL can be found at `target/idl/lb_clmm.json`.
  */
 export type LbClmm = {
-  address: "LbVRzDTvBDEcrthxfZ4RL6yiq3uZw8bS6MwtdY6UhFQ";
+  address: "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo";
   metadata: {
     name: "lbClmm";
-    version: "0.10.1";
+    version: "0.11.0";
     spec: "0.1.0";
     description: "Created with Anchor";
   };
@@ -28,7 +28,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -105,15 +105,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -123,7 +123,7 @@ export type LbClmm = {
               name: "liquidityParameter";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -203,15 +203,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -229,7 +229,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -247,7 +247,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -324,15 +324,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -342,7 +342,7 @@ export type LbClmm = {
               name: "liquidityParameterByStrategy";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -422,15 +422,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -448,7 +448,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -466,7 +466,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -524,15 +524,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -542,7 +542,7 @@ export type LbClmm = {
               name: "liquidityParameterByStrategyOneSide";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -560,7 +560,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -637,15 +637,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -655,7 +655,7 @@ export type LbClmm = {
               name: "liquidityParameterByWeight";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -673,7 +673,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -731,15 +731,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -749,7 +749,7 @@ export type LbClmm = {
               name: "liquidityOneSideParameter";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -767,7 +767,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -825,15 +825,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -843,7 +843,7 @@ export type LbClmm = {
               name: "addLiquiditySingleSidePreciseParameter";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -905,15 +905,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -931,7 +931,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -1012,15 +1012,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [];
     },
@@ -1100,15 +1100,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -1126,7 +1126,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -1192,21 +1192,21 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
           name: "rewardIndex";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -1267,15 +1267,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -1297,12 +1297,12 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
-      name: "closeClaimProtocolFeeOperator";
-      discriminator: [8, 41, 87, 35, 80, 48, 121, 26];
+      name: "closeClaimFeeOperatorAccount";
+      discriminator: [184, 213, 88, 31, 179, 101, 130, 36];
       accounts: [
         {
           name: "claimFeeOperator";
@@ -1313,9 +1313,28 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
+          name: "signer";
+          signer: true;
+        }
+      ];
+      args: [];
+    },
+    {
+      name: "closeOperatorAccount";
+      discriminator: [171, 9, 213, 74, 120, 23, 3, 29];
+      accounts: [
+        {
+          name: "operator";
+          writable: true;
+        },
+        {
+          name: "signer";
           signer: true;
         },
+        {
+          name: "rentReceiver";
+          writable: true;
+        }
       ];
       args: [];
     },
@@ -1330,7 +1349,6 @@ export type LbClmm = {
         {
           name: "lbPair";
           writable: true;
-          relations: ["position", "binArrayLower", "binArrayUpper"];
         },
         {
           name: "binArrayLower";
@@ -1371,15 +1389,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [];
     },
@@ -1422,15 +1440,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [];
     },
@@ -1473,15 +1491,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [];
     },
@@ -1494,14 +1512,16 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
-          writable: true;
+          name: "operator";
+        },
+        {
+          name: "signer";
           signer: true;
         },
         {
           name: "rentReceiver";
           writable: true;
-        },
+        }
       ];
       args: [];
     },
@@ -1514,14 +1534,16 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
-          writable: true;
+          name: "operator";
+        },
+        {
+          name: "signer";
           signer: true;
         },
         {
           name: "rentReceiver";
           writable: true;
-        },
+        }
       ];
       args: [];
     },
@@ -1538,46 +1560,58 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
-          signer: true;
+          name: "operator";
         },
+        {
+          name: "signer";
+          signer: true;
+        }
       ];
       args: [];
     },
     {
-      name: "createClaimProtocolFeeOperator";
-      discriminator: [51, 19, 150, 252, 105, 157, 48, 91];
+      name: "createOperatorAccount";
+      discriminator: [221, 64, 246, 149, 240, 153, 229, 163];
       accounts: [
         {
-          name: "claimFeeOperator";
+          name: "operator";
           writable: true;
           pda: {
             seeds: [
               {
                 kind: "const";
-                value: [99, 102, 95, 111, 112, 101, 114, 97, 116, 111, 114];
+                value: [111, 112, 101, 114, 97, 116, 111, 114];
               },
               {
                 kind: "account";
-                path: "operator";
-              },
+                path: "whitelistedSigner";
+              }
             ];
           };
         },
         {
-          name: "operator";
+          name: "whitelistedSigner";
         },
         {
-          name: "admin";
+          name: "signer";
+          signer: true;
+        },
+        {
+          name: "payer";
           writable: true;
           signer: true;
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        },
+        }
       ];
-      args: [];
+      args: [
+        {
+          name: "permission";
+          type: "u128";
+        }
+      ];
     },
     {
       name: "decreasePositionLength";
@@ -1623,15 +1657,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -1641,7 +1675,7 @@ export type LbClmm = {
         {
           name: "side";
           type: "u8";
-        },
+        }
       ];
     },
     {
@@ -1650,7 +1684,7 @@ export type LbClmm = {
       accounts: [
         {
           name: "dummyZcAccount";
-        },
+        }
       ];
       args: [
         {
@@ -1660,7 +1694,7 @@ export type LbClmm = {
               name: "dummyIx";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -1717,15 +1751,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -1747,7 +1781,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -1794,21 +1828,21 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
           name: "binId";
           type: "i32";
-        },
+        }
       ];
     },
     {
@@ -1851,21 +1885,21 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
           name: "lengthToAdd";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -1917,15 +1951,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -1935,7 +1969,7 @@ export type LbClmm = {
         {
           name: "side";
           type: "u8";
-        },
+        }
       ];
     },
     {
@@ -1987,21 +2021,21 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
           name: "minimumUpperBinId";
           type: "i32";
-        },
+        }
       ];
     },
     {
@@ -2027,7 +2061,7 @@ export type LbClmm = {
               {
                 kind: "arg";
                 path: "index";
-              },
+              }
             ];
           };
         },
@@ -2039,13 +2073,13 @@ export type LbClmm = {
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        },
+        }
       ];
       args: [
         {
           name: "index";
           type: "i64";
-        },
+        }
       ];
     },
     {
@@ -2058,7 +2092,7 @@ export type LbClmm = {
         {
           name: "binArrayBitmapExtension";
           docs: [
-            "Initialize an account to store if a bin array is initialized.",
+            "Initialize an account to store if a bin array is initialized."
           ];
           writable: true;
           pda: {
@@ -2070,7 +2104,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2085,8 +2119,7 @@ export type LbClmm = {
         },
         {
           name: "rent";
-          address: "SysvarRent111111111111111111111111111111111";
-        },
+        }
       ];
       args: [];
     },
@@ -2111,7 +2144,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2133,7 +2166,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintX";
-              },
+              }
             ];
           };
         },
@@ -2149,7 +2182,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintY";
-              },
+              }
             ];
           };
         },
@@ -2165,7 +2198,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2211,15 +2244,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -2229,7 +2262,7 @@ export type LbClmm = {
               name: "customizableParams";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -2253,7 +2286,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2275,7 +2308,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintX";
-              },
+              }
             ];
           };
         },
@@ -2291,7 +2324,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintY";
-              },
+              }
             ];
           };
         },
@@ -2307,7 +2340,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2363,15 +2396,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -2381,7 +2414,7 @@ export type LbClmm = {
               name: "customizableParams";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -2405,7 +2438,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2427,7 +2460,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintX";
-              },
+              }
             ];
           };
         },
@@ -2443,7 +2476,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintY";
-              },
+              }
             ];
           };
         },
@@ -2459,7 +2492,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2481,7 +2514,6 @@ export type LbClmm = {
         },
         {
           name: "rent";
-          address: "SysvarRent111111111111111111111111111111111";
         },
         {
           name: "eventAuthority";
@@ -2506,15 +2538,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -2524,7 +2556,7 @@ export type LbClmm = {
         {
           name: "binStep";
           type: "u16";
-        },
+        }
       ];
     },
     {
@@ -2548,7 +2580,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2570,7 +2602,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintX";
-              },
+              }
             ];
           };
         },
@@ -2586,7 +2618,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintY";
-              },
+              }
             ];
           };
         },
@@ -2602,7 +2634,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2655,15 +2687,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -2673,7 +2705,7 @@ export type LbClmm = {
               name: "initializeLbPair2Params";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -2701,7 +2733,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
@@ -2723,7 +2755,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintX";
-              },
+              }
             ];
           };
         },
@@ -2739,7 +2771,7 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMintY";
-              },
+              }
             ];
           };
         },
@@ -2755,13 +2787,20 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "lbPair";
-              },
+              }
             ];
           };
         },
         {
-          name: "admin";
+          name: "payer";
           writable: true;
+          signer: true;
+        },
+        {
+          name: "operator";
+        },
+        {
+          name: "signer";
           signer: true;
         },
         {
@@ -2781,10 +2820,6 @@ export type LbClmm = {
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        },
-        {
-          name: "rent";
-          address: "SysvarRent111111111111111111111111111111111";
         },
         {
           name: "eventAuthority";
@@ -2809,15 +2844,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -2827,7 +2862,7 @@ export type LbClmm = {
               name: "initPermissionPairIx";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -2857,7 +2892,6 @@ export type LbClmm = {
         },
         {
           name: "rent";
-          address: "SysvarRent111111111111111111111111111111111";
         },
         {
           name: "eventAuthority";
@@ -2882,15 +2916,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -2900,7 +2934,7 @@ export type LbClmm = {
         {
           name: "width";
           type: "i32";
-        },
+        }
       ];
     },
     {
@@ -2951,15 +2985,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -2969,7 +3003,7 @@ export type LbClmm = {
         {
           name: "width";
           type: "i32";
-        },
+        }
       ];
     },
     {
@@ -3009,7 +3043,7 @@ export type LbClmm = {
               {
                 kind: "arg";
                 path: "width";
-              },
+              }
             ];
           };
         },
@@ -3057,15 +3091,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -3083,7 +3117,7 @@ export type LbClmm = {
         {
           name: "lockReleasePoint";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -3123,7 +3157,7 @@ export type LbClmm = {
               {
                 kind: "arg";
                 path: "width";
-              },
+              }
             ];
           };
         },
@@ -3141,7 +3175,6 @@ export type LbClmm = {
         },
         {
           name: "rent";
-          address: "SysvarRent111111111111111111111111111111111";
         },
         {
           name: "eventAuthority";
@@ -3166,15 +3199,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -3184,7 +3217,7 @@ export type LbClmm = {
         {
           name: "width";
           type: "i32";
-        },
+        }
       ];
     },
     {
@@ -3215,32 +3248,32 @@ export type LbClmm = {
                   116,
                   101,
                   114,
+                  50
                 ];
               },
               {
                 kind: "arg";
-                path: "ix.bin_step";
-              },
-              {
-                kind: "arg";
-                path: "ix.base_factor";
-              },
+                path: "ix.index";
+              }
             ];
           };
         },
         {
-          name: "admin";
+          name: "operator";
+        },
+        {
+          name: "signer";
+          signer: true;
+        },
+        {
+          name: "payer";
           writable: true;
           signer: true;
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        },
-        {
-          name: "rent";
-          address: "SysvarRent111111111111111111111111111111111";
-        },
+        }
       ];
       args: [
         {
@@ -3250,66 +3283,7 @@ export type LbClmm = {
               name: "initPresetParametersIx";
             };
           };
-        },
-      ];
-    },
-    {
-      name: "initializePresetParameter2";
-      discriminator: [184, 7, 240, 171, 103, 47, 183, 121];
-      accounts: [
-        {
-          name: "presetParameter";
-          writable: true;
-          pda: {
-            seeds: [
-              {
-                kind: "const";
-                value: [
-                  112,
-                  114,
-                  101,
-                  115,
-                  101,
-                  116,
-                  95,
-                  112,
-                  97,
-                  114,
-                  97,
-                  109,
-                  101,
-                  116,
-                  101,
-                  114,
-                  50,
-                ];
-              },
-              {
-                kind: "arg";
-                path: "ix.index";
-              },
-            ];
-          };
-        },
-        {
-          name: "admin";
-          writable: true;
-          signer: true;
-        },
-        {
-          name: "systemProgram";
-          address: "11111111111111111111111111111111";
-        },
-      ];
-      args: [
-        {
-          name: "ix";
-          type: {
-            defined: {
-              name: "initPresetParameters2Ix";
-            };
-          };
-        },
+        }
       ];
     },
     {
@@ -3332,7 +3306,7 @@ export type LbClmm = {
               {
                 kind: "arg";
                 path: "rewardIndex";
-              },
+              }
             ];
           };
         },
@@ -3344,7 +3318,14 @@ export type LbClmm = {
           optional: true;
         },
         {
-          name: "admin";
+          name: "operator";
+        },
+        {
+          name: "signer";
+          signer: true;
+        },
+        {
+          name: "payer";
           writable: true;
           signer: true;
         },
@@ -3354,10 +3335,6 @@ export type LbClmm = {
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        },
-        {
-          name: "rent";
-          address: "SysvarRent111111111111111111111111111111111";
         },
         {
           name: "eventAuthority";
@@ -3382,15 +3359,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -3404,7 +3381,7 @@ export type LbClmm = {
         {
           name: "funder";
           type: "pubkey";
-        },
+        }
       ];
     },
     {
@@ -3426,29 +3403,26 @@ export type LbClmm = {
               {
                 kind: "account";
                 path: "tokenMint";
-              },
+              }
             ];
           };
         },
         {
-          name: "admin";
+          name: "operator";
+        },
+        {
+          name: "signer";
+          signer: true;
+        },
+        {
+          name: "payer";
           writable: true;
           signer: true;
         },
         {
           name: "systemProgram";
           address: "11111111111111111111111111111111";
-        },
-      ];
-      args: [];
-    },
-    {
-      name: "migrateBinArray";
-      discriminator: [17, 23, 159, 211, 101, 184, 41, 241];
-      accounts: [
-        {
-          name: "lbPair";
-        },
+        }
       ];
       args: [];
     },
@@ -3467,7 +3441,6 @@ export type LbClmm = {
         },
         {
           name: "lbPair";
-          relations: ["positionV1", "binArrayLower", "binArrayUpper"];
         },
         {
           name: "binArrayLower";
@@ -3478,10 +3451,9 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "owner";
+          name: "signerAndPayer";
           writable: true;
           signer: true;
-          relations: ["positionV1"];
         },
         {
           name: "systemProgram";
@@ -3514,15 +3486,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [];
     },
@@ -3617,15 +3589,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -3643,7 +3615,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -3661,7 +3633,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -3738,15 +3710,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [];
     },
@@ -3765,7 +3737,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -3842,15 +3814,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -3862,7 +3834,7 @@ export type LbClmm = {
               };
             };
           };
-        },
+        }
       ];
     },
     {
@@ -3946,15 +3918,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -3974,7 +3946,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -3992,7 +3964,7 @@ export type LbClmm = {
             "position",
             "binArrayBitmapExtension",
             "binArrayLower",
-            "binArrayUpper",
+            "binArrayUpper"
           ];
         },
         {
@@ -4069,15 +4041,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4091,7 +4063,7 @@ export type LbClmm = {
         {
           name: "bpsToRemove";
           type: "u16";
-        },
+        }
       ];
     },
     {
@@ -4175,15 +4147,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4205,8 +4177,66 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
+    },
+    {
+      name: "resetBinArrayTombstoneFields";
+      discriminator: [54, 90, 252, 63, 41, 206, 63, 63];
+      accounts: [
+        {
+          name: "lbPair";
+          relations: ["binArray"];
+        },
+        {
+          name: "binArray";
+          writable: true;
+        },
+        {
+          name: "operator";
+        },
+        {
+          name: "signer";
+          signer: true;
+        }
+      ];
+      args: [];
+    },
+    {
+      name: "resetPoolTombstoneFields";
+      discriminator: [246, 109, 19, 120, 108, 113, 68, 252];
+      accounts: [
+        {
+          name: "lbPair";
+          writable: true;
+        },
+        {
+          name: "operator";
+        },
+        {
+          name: "signer";
+          signer: true;
+        }
+      ];
+      args: [];
+    },
+    {
+      name: "resetPositionTombstoneFields";
+      discriminator: [206, 6, 51, 218, 211, 30, 159, 84];
+      accounts: [
+        {
+          name: "position";
+          writable: true;
+        },
+        {
+          name: "operator";
+        },
+        {
+          name: "signer";
+          signer: true;
+        }
+      ];
+      args: [];
     },
     {
       name: "setActivationPoint";
@@ -4217,16 +4247,15 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
-          writable: true;
+          name: "signer";
           signer: true;
-        },
+        }
       ];
       args: [
         {
           name: "activationPoint";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -4238,15 +4267,18 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
-          signer: true;
+          name: "operator";
         },
+        {
+          name: "signer";
+          signer: true;
+        }
       ];
       args: [
         {
           name: "status";
           type: "u8";
-        },
+        }
       ];
     },
     {
@@ -4258,16 +4290,15 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "creator";
+          name: "signer";
           signer: true;
-          relations: ["lbPair"];
-        },
+        }
       ];
       args: [
         {
           name: "status";
           type: "u8";
-        },
+        }
       ];
     },
     {
@@ -4279,16 +4310,15 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "creator";
+          name: "signer";
           signer: true;
-          relations: ["lbPair"];
-        },
+        }
       ];
       args: [
         {
           name: "preActivationDuration";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -4300,16 +4330,15 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "creator";
+          name: "signer";
           signer: true;
-          relations: ["lbPair"];
-        },
+        }
       ];
       args: [
         {
           name: "preActivationSwapAddress";
           type: "pubkey";
-        },
+        }
       ];
     },
     {
@@ -4396,15 +4425,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4414,7 +4443,7 @@ export type LbClmm = {
         {
           name: "minAmountOut";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -4503,15 +4532,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4529,7 +4558,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -4616,15 +4645,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4634,7 +4663,7 @@ export type LbClmm = {
         {
           name: "outAmount";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -4723,15 +4752,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4749,7 +4778,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -4836,15 +4865,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4860,7 +4889,7 @@ export type LbClmm = {
         {
           name: "maxPriceImpactBps";
           type: "u16";
-        },
+        }
       ];
     },
     {
@@ -4949,15 +4978,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -4981,7 +5010,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -4993,7 +5022,10 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
+          name: "operator";
+        },
+        {
+          name: "signer";
           signer: true;
         },
         {
@@ -5019,15 +5051,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -5037,7 +5069,7 @@ export type LbClmm = {
               name: "baseFeeParameter";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -5049,7 +5081,10 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
+          name: "operator";
+        },
+        {
+          name: "signer";
           signer: true;
         },
         {
@@ -5075,15 +5110,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -5093,7 +5128,7 @@ export type LbClmm = {
               name: "dynamicFeeParameter";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -5112,7 +5147,7 @@ export type LbClmm = {
         {
           name: "owner";
           signer: true;
-        },
+        }
       ];
       args: [
         {
@@ -5122,7 +5157,7 @@ export type LbClmm = {
         {
           name: "maxBinId";
           type: "i32";
-        },
+        }
       ];
     },
     {
@@ -5149,7 +5184,7 @@ export type LbClmm = {
         {
           name: "owner";
           signer: true;
-        },
+        }
       ];
       args: [];
     },
@@ -5189,21 +5224,21 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
           name: "operator";
           type: "pubkey";
-        },
+        }
       ];
     },
     {
@@ -5216,7 +5251,10 @@ export type LbClmm = {
           relations: ["binArray"];
         },
         {
-          name: "admin";
+          name: "operator";
+        },
+        {
+          name: "signer";
           signer: true;
         },
         {
@@ -5246,15 +5284,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -5264,7 +5302,7 @@ export type LbClmm = {
         {
           name: "newDuration";
           type: "u64";
-        },
+        }
       ];
     },
     {
@@ -5276,7 +5314,10 @@ export type LbClmm = {
           writable: true;
         },
         {
-          name: "admin";
+          name: "operator";
+        },
+        {
+          name: "signer";
           signer: true;
         },
         {
@@ -5302,15 +5343,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -5320,7 +5361,7 @@ export type LbClmm = {
         {
           name: "newFunder";
           type: "pubkey";
-        },
+        }
       ];
     },
     {
@@ -5381,15 +5422,15 @@ export type LbClmm = {
                   114,
                   105,
                   116,
-                  121,
+                  121
                 ];
-              },
+              }
             ];
           };
         },
         {
           name: "program";
-        },
+        }
       ];
       args: [
         {
@@ -5403,7 +5444,7 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
     {
@@ -5435,202 +5476,25 @@ export type LbClmm = {
         {
           name: "receiverTokenX";
           writable: true;
-          pda: {
-            seeds: [
-              {
-                kind: "const";
-                value: [
-                  8,
-                  234,
-                  192,
-                  109,
-                  87,
-                  125,
-                  190,
-                  55,
-                  129,
-                  173,
-                  227,
-                  8,
-                  104,
-                  201,
-                  104,
-                  13,
-                  31,
-                  178,
-                  74,
-                  80,
-                  54,
-                  14,
-                  77,
-                  78,
-                  226,
-                  57,
-                  47,
-                  122,
-                  166,
-                  165,
-                  57,
-                  144,
-                ];
-              },
-              {
-                kind: "account";
-                path: "tokenXProgram";
-              },
-              {
-                kind: "account";
-                path: "tokenXMint";
-              },
-            ];
-            program: {
-              kind: "const";
-              value: [
-                140,
-                151,
-                37,
-                143,
-                78,
-                36,
-                137,
-                241,
-                187,
-                61,
-                16,
-                41,
-                20,
-                142,
-                13,
-                131,
-                11,
-                90,
-                19,
-                153,
-                218,
-                255,
-                16,
-                132,
-                4,
-                142,
-                123,
-                216,
-                219,
-                233,
-                248,
-                89,
-              ];
-            };
-          };
         },
         {
           name: "receiverTokenY";
           writable: true;
-          pda: {
-            seeds: [
-              {
-                kind: "const";
-                value: [
-                  8,
-                  234,
-                  192,
-                  109,
-                  87,
-                  125,
-                  190,
-                  55,
-                  129,
-                  173,
-                  227,
-                  8,
-                  104,
-                  201,
-                  104,
-                  13,
-                  31,
-                  178,
-                  74,
-                  80,
-                  54,
-                  14,
-                  77,
-                  78,
-                  226,
-                  57,
-                  47,
-                  122,
-                  166,
-                  165,
-                  57,
-                  144,
-                ];
-              },
-              {
-                kind: "account";
-                path: "tokenYProgram";
-              },
-              {
-                kind: "account";
-                path: "tokenYMint";
-              },
-            ];
-            program: {
-              kind: "const";
-              value: [
-                140,
-                151,
-                37,
-                143,
-                78,
-                36,
-                137,
-                241,
-                187,
-                61,
-                16,
-                41,
-                20,
-                142,
-                13,
-                131,
-                11,
-                90,
-                19,
-                153,
-                218,
-                255,
-                16,
-                132,
-                4,
-                142,
-                123,
-                216,
-                219,
-                233,
-                248,
-                89,
-              ];
-            };
-          };
-        },
-        {
-          name: "claimFeeOperator";
         },
         {
           name: "operator";
+        },
+        {
+          name: "signer";
           docs: ["operator"];
           signer: true;
-          relations: ["claimFeeOperator"];
         },
         {
           name: "tokenXProgram";
         },
         {
           name: "tokenYProgram";
-        },
-        {
-          name: "memoProgram";
-          address: "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr";
-        },
+        }
       ];
       args: [
         {
@@ -5648,9 +5512,59 @@ export type LbClmm = {
               name: "remainingAccountsInfo";
             };
           };
-        },
+        }
       ];
     },
+    {
+      name: "zapProtocolFee";
+      discriminator: [213, 155, 187, 34, 56, 182, 91, 240];
+      accounts: [
+        {
+          name: "lbPair";
+          writable: true;
+        },
+        {
+          name: "reserve";
+          writable: true;
+        },
+        {
+          name: "tokenMint";
+        },
+        {
+          name: "receiverToken";
+          writable: true;
+        },
+        {
+          name: "operator";
+        },
+        {
+          name: "signer";
+          docs: ["operator"];
+          signer: true;
+        },
+        {
+          name: "tokenProgram";
+        },
+        {
+          name: "sysvarInstructions";
+          address: "Sysvar1nstructions1111111111111111111111111";
+        }
+      ];
+      args: [
+        {
+          name: "maxAmount";
+          type: "u64";
+        },
+        {
+          name: "remainingAccountsInfo";
+          type: {
+            defined: {
+              name: "remainingAccountsInfo";
+            };
+          };
+        }
+      ];
+    }
   ];
   accounts: [
     {
@@ -5672,6 +5586,10 @@ export type LbClmm = {
     {
       name: "lbPair";
       discriminator: [33, 11, 49, 98, 181, 101, 177, 13];
+    },
+    {
+      name: "operator";
+      discriminator: [219, 31, 188, 145, 69, 139, 204, 117];
     },
     {
       name: "oracle";
@@ -5696,7 +5614,7 @@ export type LbClmm = {
     {
       name: "tokenBadge";
       discriminator: [116, 219, 204, 229, 249, 116, 255, 150];
-    },
+    }
   ];
   events: [
     {
@@ -5798,7 +5716,7 @@ export type LbClmm = {
     {
       name: "withdrawIneligibleReward";
       discriminator: [231, 189, 65, 149, 102, 215, 154, 244];
-    },
+    }
   ];
   errors: [
     {
@@ -6251,6 +6169,76 @@ export type LbClmm = {
       name: "invalidPoolAddress";
       msg: "Invalid pool address";
     },
+    {
+      code: 6090;
+      name: "invalidTokenBadgeType";
+      msg: "Invalid token badge type";
+    },
+    {
+      code: 6091;
+      name: "invalidTransferHookAuthority";
+      msg: "Invalid transfer hook authority";
+    },
+    {
+      code: 6092;
+      name: "amountXIsNegative";
+      msg: "Amount x is negative";
+    },
+    {
+      code: 6093;
+      name: "amountYIsNegative";
+      msg: "Amount y is negative";
+    },
+    {
+      code: 6094;
+      name: "invalidPoolCreator";
+      msg: "Invalid pool creator";
+    },
+    {
+      code: 6095;
+      name: "invalidFunctionType";
+      msg: "Invalid function type";
+    },
+    {
+      code: 6096;
+      name: "invalidPermission";
+      msg: "Invalid permission";
+    },
+    {
+      code: 6097;
+      name: "incorrectAta";
+      msg: "Incorrect ATA";
+    },
+    {
+      code: 6098;
+      name: "invalidWithdrawProtocolFeeZapAccounts";
+      msg: "Invalid withdraw protocol fee zap accounts";
+    },
+    {
+      code: 6099;
+      name: "mintRestrictedFromZap";
+      msg: "SOL,USDC protocol fee cannot be withdrawn via zap";
+    },
+    {
+      code: 6100;
+      name: "cpiDisabled";
+      msg: "CPI disabled";
+    },
+    {
+      code: 6101;
+      name: "missingZapOutInstruction";
+      msg: "Missing zap out instruction";
+    },
+    {
+      code: 6102;
+      name: "invalidZapAccounts";
+      msg: "Invalid zap accounts";
+    },
+    {
+      code: 6103;
+      name: "invalidZapOutParameters";
+      msg: "Invalid zap out parameters";
+    }
   ];
   types: [
     {
@@ -6270,7 +6258,7 @@ export type LbClmm = {
           {
             name: "transferHookMultiReward";
             fields: ["u8"];
-          },
+          }
         ];
       };
     },
@@ -6288,7 +6276,7 @@ export type LbClmm = {
           },
           {
             name: "timestamp";
-          },
+          }
         ];
       };
     },
@@ -6318,7 +6306,7 @@ export type LbClmm = {
           {
             name: "activeBinId";
             type: "i32";
-          },
+          }
         ];
       };
     },
@@ -6364,7 +6352,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 16];
             };
-          },
+          }
         ];
       };
     },
@@ -6386,7 +6374,7 @@ export type LbClmm = {
           {
             name: "decompressMultiplier";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -6412,7 +6400,7 @@ export type LbClmm = {
           {
             name: "maxAmount";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -6424,7 +6412,7 @@ export type LbClmm = {
           {
             name: "protocolShare";
             docs: [
-              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee",
+              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee"
             ];
             type: "u16";
           },
@@ -6437,7 +6425,7 @@ export type LbClmm = {
             name: "baseFeePowerFactor";
             docs: ["Base fee power factor"];
             type: "u8";
-          },
+          }
         ];
       };
     },
@@ -6453,14 +6441,14 @@ export type LbClmm = {
           {
             name: "amountX";
             docs: [
-              "Amount of token X in the bin. This already excluded protocol fees.",
+              "Amount of token X in the bin. This already excluded protocol fees."
             ];
             type: "u64";
           },
           {
             name: "amountY";
             docs: [
-              "Amount of token Y in the bin. This already excluded protocol fees.",
+              "Amount of token Y in the bin. This already excluded protocol fees."
             ];
             type: "u64";
           },
@@ -6472,13 +6460,15 @@ export type LbClmm = {
           {
             name: "liquiditySupply";
             docs: [
-              "Liquidities of the bin. This is the same as LP mint supply. q-number",
+              "Liquidities of the bin. This is the same as LP mint supply. q-number"
             ];
             type: "u128";
           },
           {
-            name: "rewardPerTokenStored";
-            docs: ["reward_a_per_token_stored"];
+            name: "functionBytes";
+            docs: [
+              "function bytes, could be used for liquidity mining or other functions in future"
+            ];
             type: {
               array: ["u128", 2];
             };
@@ -6494,19 +6484,19 @@ export type LbClmm = {
             type: "u128";
           },
           {
-            name: "amountXIn";
+            name: "padding0";
             docs: [
-              "Total token X swap into the bin. Only used for tracking purpose.",
+              "_padding_0, previous amount_x_in, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!"
             ];
             type: "u128";
           },
           {
-            name: "amountYIn";
+            name: "padding1";
             docs: [
-              "Total token Y swap into he bin. Only used for tracking purpose.",
+              "_padding_1, previous amount_y_in, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!"
             ];
             type: "u128";
-          },
+          }
         ];
       };
     },
@@ -6516,7 +6506,7 @@ export type LbClmm = {
         "An account to contain a range of bin. For example: Bin 100 <-> 200.",
         "For example:",
         "BinArray index: 0 contains bin 0 <-> 599",
-        "index: 2 contains bin 600 <-> 1199, ...",
+        "index: 2 contains bin 600 <-> 1199, ..."
       ];
       serialization: "bytemuck";
       repr: {
@@ -6531,11 +6521,10 @@ export type LbClmm = {
           },
           {
             name: "version";
-            docs: ["Version of binArray"];
             type: "u8";
           },
           {
-            name: "padding";
+            name: "padding1";
             type: {
               array: ["u8", 7];
             };
@@ -6553,10 +6542,10 @@ export type LbClmm = {
                     name: "bin";
                   };
                 },
-                70,
+                70
               ];
             };
-          },
+          }
         ];
       };
     },
@@ -6576,31 +6565,31 @@ export type LbClmm = {
           {
             name: "positiveBinArrayBitmap";
             docs: [
-              "Packed initialized bin array state for start_bin_index is positive",
+              "Packed initialized bin array state for start_bin_index is positive"
             ];
             type: {
               array: [
                 {
                   array: ["u64", 8];
                 },
-                12,
+                12
               ];
             };
           },
           {
             name: "negativeBinArrayBitmap";
             docs: [
-              "Packed initialized bin array state for start_bin_index is negative",
+              "Packed initialized bin array state for start_bin_index is negative"
             ];
             type: {
               array: [
                 {
                   array: ["u64", 8];
                 },
-                12,
+                12
               ];
             };
-          },
+          }
         ];
       };
     },
@@ -6617,17 +6606,17 @@ export type LbClmm = {
           {
             name: "distributionX";
             docs: [
-              "DistributionX (or distributionY) is the percentages of amountX (or amountY) you want to add to each bin.",
+              "DistributionX (or distributionY) is the percentages of amountX (or amountY) you want to add to each bin."
             ];
             type: "u16";
           },
           {
             name: "distributionY";
             docs: [
-              "DistributionX (or distributionY) is the percentages of amountX (or amountY) you want to add to each bin.",
+              "DistributionX (or distributionY) is the percentages of amountX (or amountY) you want to add to each bin."
             ];
             type: "u16";
-          },
+          }
         ];
       };
     },
@@ -6645,7 +6634,7 @@ export type LbClmm = {
             name: "weight";
             docs: ["weight of liquidity distributed for this bin id"];
             type: "u16";
-          },
+          }
         ];
       };
     },
@@ -6661,7 +6650,7 @@ export type LbClmm = {
           {
             name: "bpsToRemove";
             type: "u16";
-          },
+          }
         ];
       };
     },
@@ -6689,7 +6678,7 @@ export type LbClmm = {
           {
             name: "feeY";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -6721,7 +6710,7 @@ export type LbClmm = {
           {
             name: "activeBinId";
             type: "i32";
-          },
+          }
         ];
       };
     },
@@ -6746,7 +6735,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 128];
             };
-          },
+          }
         ];
       };
     },
@@ -6774,7 +6763,7 @@ export type LbClmm = {
           {
             name: "totalReward";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -6806,7 +6795,7 @@ export type LbClmm = {
           {
             name: "activeBinId";
             type: "i32";
-          },
+          }
         ];
       };
     },
@@ -6838,7 +6827,7 @@ export type LbClmm = {
           {
             name: "protocolTokenYFeeAmount";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -6854,7 +6843,7 @@ export type LbClmm = {
           {
             name: "amount";
             type: "u32";
-          },
+          }
         ];
       };
     },
@@ -6881,7 +6870,7 @@ export type LbClmm = {
           {
             name: "activationType";
             docs: [
-              "Activation type. 0 = Slot, 1 = Time. Check ActivationType enum",
+              "Activation type. 0 = Slot, 1 = Time. Check ActivationType enum"
             ];
             type: "u8";
           },
@@ -6900,7 +6889,7 @@ export type LbClmm = {
           {
             name: "creatorPoolOnOffControl";
             docs: [
-              "Pool creator have permission to enable/disable pool with restricted program validation. Only applicable for customizable permissionless pool.",
+              "Pool creator have permission to enable/disable pool with restricted program validation. Only applicable for customizable permissionless pool."
             ];
             type: "bool";
           },
@@ -6910,12 +6899,17 @@ export type LbClmm = {
             type: "u8";
           },
           {
+            name: "functionType";
+            docs: ["function type"];
+            type: "u8";
+          },
+          {
             name: "padding";
             docs: ["Padding, for future use"];
             type: {
-              array: ["u8", 62];
+              array: ["u8", 61];
             };
-          },
+          }
         ];
       };
     },
@@ -6943,7 +6937,7 @@ export type LbClmm = {
           {
             name: "side";
             type: "u8";
-          },
+          }
         ];
       };
     },
@@ -6999,7 +6993,7 @@ export type LbClmm = {
                 name: "rounding";
               };
             };
-          },
+          }
         ];
       };
     },
@@ -7019,7 +7013,7 @@ export type LbClmm = {
                 name: "positionBinData";
               };
             };
-          },
+          }
         ];
       };
     },
@@ -7031,38 +7025,38 @@ export type LbClmm = {
           {
             name: "filterPeriod";
             docs: [
-              "Filter period determine high frequency trading time window.",
+              "Filter period determine high frequency trading time window."
             ];
             type: "u16";
           },
           {
             name: "decayPeriod";
             docs: [
-              "Decay period determine when the volatile fee start decay / decrease.",
+              "Decay period determine when the volatile fee start decay / decrease."
             ];
             type: "u16";
           },
           {
             name: "reductionFactor";
             docs: [
-              "Reduction factor controls the volatile fee rate decrement rate.",
+              "Reduction factor controls the volatile fee rate decrement rate."
             ];
             type: "u16";
           },
           {
             name: "variableFeeControl";
             docs: [
-              "Used to scale the variable fee component depending on the dynamic of the market",
+              "Used to scale the variable fee component depending on the dynamic of the market"
             ];
             type: "u32";
           },
           {
             name: "maxVolatilityAccumulator";
             docs: [
-              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate.",
+              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate."
             ];
             type: "u32";
-          },
+          }
         ];
       };
     },
@@ -7078,38 +7072,38 @@ export type LbClmm = {
           {
             name: "filterPeriod";
             docs: [
-              "Filter period determine high frequency trading time window.",
+              "Filter period determine high frequency trading time window."
             ];
             type: "u16";
           },
           {
             name: "decayPeriod";
             docs: [
-              "Decay period determine when the volatile fee start decay / decrease.",
+              "Decay period determine when the volatile fee start decay / decrease."
             ];
             type: "u16";
           },
           {
             name: "reductionFactor";
             docs: [
-              "Reduction factor controls the volatile fee rate decrement rate.",
+              "Reduction factor controls the volatile fee rate decrement rate."
             ];
             type: "u16";
           },
           {
             name: "variableFeeControl";
             docs: [
-              "Used to scale the variable fee component depending on the dynamic of the market",
+              "Used to scale the variable fee component depending on the dynamic of the market"
             ];
             type: "u32";
           },
           {
             name: "maxVolatilityAccumulator";
             docs: [
-              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate.",
+              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate."
             ];
             type: "u32";
-          },
+          }
         ];
       };
     },
@@ -7137,7 +7131,7 @@ export type LbClmm = {
           {
             name: "feeYPending";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -7157,7 +7151,7 @@ export type LbClmm = {
           {
             name: "baseFactor";
             type: "u16";
-          },
+          }
         ];
       };
     },
@@ -7181,7 +7175,7 @@ export type LbClmm = {
           {
             name: "amount";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -7201,7 +7195,7 @@ export type LbClmm = {
           {
             name: "toBinId";
             type: "i32";
-          },
+          }
         ];
       };
     },
@@ -7217,7 +7211,7 @@ export type LbClmm = {
           {
             name: "newObservationLength";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -7245,7 +7239,7 @@ export type LbClmm = {
           {
             name: "side";
             type: "u8";
-          },
+          }
         ];
       };
     },
@@ -7277,12 +7271,12 @@ export type LbClmm = {
           {
             name: "protocolShare";
             type: "u16";
-          },
+          }
         ];
       };
     },
     {
-      name: "initPresetParameters2Ix";
+      name: "initPresetParametersIx";
       type: {
         kind: "struct";
         fields: [
@@ -7298,49 +7292,49 @@ export type LbClmm = {
           {
             name: "baseFactor";
             docs: [
-              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor",
+              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor"
             ];
             type: "u16";
           },
           {
             name: "filterPeriod";
             docs: [
-              "Filter period determine high frequency trading time window.",
+              "Filter period determine high frequency trading time window."
             ];
             type: "u16";
           },
           {
             name: "decayPeriod";
             docs: [
-              "Decay period determine when the volatile fee start decay / decrease.",
+              "Decay period determine when the volatile fee start decay / decrease."
             ];
             type: "u16";
           },
           {
             name: "reductionFactor";
             docs: [
-              "Reduction factor controls the volatile fee rate decrement rate.",
+              "Reduction factor controls the volatile fee rate decrement rate."
             ];
             type: "u16";
           },
           {
             name: "variableFeeControl";
             docs: [
-              "Used to scale the variable fee component depending on the dynamic of the market",
+              "Used to scale the variable fee component depending on the dynamic of the market"
             ];
             type: "u32";
           },
           {
             name: "maxVolatilityAccumulator";
             docs: [
-              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate.",
+              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate."
             ];
             type: "u32";
           },
           {
             name: "protocolShare";
             docs: [
-              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee",
+              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee"
             ];
             type: "u16";
           },
@@ -7349,68 +7343,11 @@ export type LbClmm = {
             docs: ["Base fee power factor"];
             type: "u8";
           },
-        ];
-      };
-    },
-    {
-      name: "initPresetParametersIx";
-      type: {
-        kind: "struct";
-        fields: [
           {
-            name: "binStep";
-            docs: ["Bin step. Represent the price increment / decrement."];
-            type: "u16";
-          },
-          {
-            name: "baseFactor";
-            docs: [
-              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor",
-            ];
-            type: "u16";
-          },
-          {
-            name: "filterPeriod";
-            docs: [
-              "Filter period determine high frequency trading time window.",
-            ];
-            type: "u16";
-          },
-          {
-            name: "decayPeriod";
-            docs: [
-              "Decay period determine when the volatile fee start decay / decrease.",
-            ];
-            type: "u16";
-          },
-          {
-            name: "reductionFactor";
-            docs: [
-              "Reduction factor controls the volatile fee rate decrement rate.",
-            ];
-            type: "u16";
-          },
-          {
-            name: "variableFeeControl";
-            docs: [
-              "Used to scale the variable fee component depending on the dynamic of the market",
-            ];
-            type: "u32";
-          },
-          {
-            name: "maxVolatilityAccumulator";
-            docs: [
-              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate.",
-            ];
-            type: "u32";
-          },
-          {
-            name: "protocolShare";
-            docs: [
-              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee",
-            ];
-            type: "u16";
-          },
+            name: "functionType";
+            docs: ["function type"];
+            type: "u8";
+          }
         ];
       };
     },
@@ -7430,7 +7367,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 96];
             };
-          },
+          }
         ];
       };
     },
@@ -7458,7 +7395,7 @@ export type LbClmm = {
           {
             name: "rewardDuration";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -7540,7 +7477,7 @@ export type LbClmm = {
           {
             name: "creatorPoolOnOffControl";
             docs: [
-              "Allow pool creator to enable/disable pool with restricted validation. Only applicable for customizable permissionless pair type.",
+              "Allow pool creator to enable/disable pool with restricted validation. Only applicable for customizable permissionless pair type."
             ];
             type: "u8";
           },
@@ -7576,7 +7513,7 @@ export type LbClmm = {
           {
             name: "padding1";
             docs: [
-              "_padding_1, previous Fee owner, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!",
+              "_padding_1, previous Fee owner, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!"
             ];
             type: {
               array: ["u8", 32];
@@ -7592,7 +7529,7 @@ export type LbClmm = {
                     name: "rewardInfo";
                   };
                 },
-                2,
+                2
               ];
             };
           },
@@ -7616,7 +7553,7 @@ export type LbClmm = {
           {
             name: "padding2";
             docs: [
-              "_padding_2, previous whitelisted_wallet, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!",
+              "_padding_2, previous whitelisted_wallet, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!"
             ];
             type: {
               array: ["u8", 32];
@@ -7625,7 +7562,7 @@ export type LbClmm = {
           {
             name: "preActivationSwapAddress";
             docs: [
-              "Address allowed to swap when the current point is greater than or equal to the pre-activation point. The pre-activation point is calculated as `activation_point - pre_activation_duration`.",
+              "Address allowed to swap when the current point is greater than or equal to the pre-activation point. The pre-activation point is calculated as `activation_point - pre_activation_duration`."
             ];
             type: "pubkey";
           },
@@ -7637,21 +7574,21 @@ export type LbClmm = {
           {
             name: "activationPoint";
             docs: [
-              "Time point to enable the pair. Only applicable for permission pair.",
+              "Time point to enable the pair. Only applicable for permission pair."
             ];
             type: "u64";
           },
           {
             name: "preActivationDuration";
             docs: [
-              "Duration before activation activation_point. Used to calculate pre-activation time point for pre_activation_swap_address",
+              "Duration before activation activation_point. Used to calculate pre-activation time point for pre_activation_swap_address"
             ];
             type: "u64";
           },
           {
             name: "padding3";
             docs: [
-              "_padding 3 is reclaimed free space from swap_cap_deactivate_point and swap_cap_amount before, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!",
+              "_padding 3 is reclaimed free space from swap_cap_deactivate_point and swap_cap_amount before, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!"
             ];
             type: {
               array: ["u8", 8];
@@ -7660,7 +7597,7 @@ export type LbClmm = {
           {
             name: "padding4";
             docs: [
-              "_padding_4, previous lock_duration, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!",
+              "_padding_4, previous lock_duration, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!"
             ];
             type: "u64";
           },
@@ -7680,12 +7617,17 @@ export type LbClmm = {
             type: "u8";
           },
           {
+            name: "version";
+            docs: ["version to know whether we have reset tombstone fields"];
+            type: "u8";
+          },
+          {
             name: "reserved";
             docs: ["Reserved space for future use"];
             type: {
-              array: ["u8", 22];
+              array: ["u8", 21];
             };
-          },
+          }
         ];
       };
     },
@@ -7709,7 +7651,7 @@ export type LbClmm = {
           {
             name: "tokenY";
             type: "pubkey";
-          },
+          }
         ];
       };
     },
@@ -7743,7 +7685,7 @@ export type LbClmm = {
                 };
               };
             };
-          },
+          }
         ];
       };
     },
@@ -7772,7 +7714,7 @@ export type LbClmm = {
                 };
               };
             };
-          },
+          }
         ];
       };
     },
@@ -7809,7 +7751,7 @@ export type LbClmm = {
                 name: "strategyParameters";
               };
             };
-          },
+          }
         ];
       };
     },
@@ -7841,7 +7783,7 @@ export type LbClmm = {
                 name: "strategyParameters";
               };
             };
-          },
+          }
         ];
       };
     },
@@ -7880,7 +7822,33 @@ export type LbClmm = {
                 };
               };
             };
+          }
+        ];
+      };
+    },
+    {
+      name: "operator";
+      serialization: "bytemuck";
+      repr: {
+        kind: "c";
+      };
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "signer";
+            type: "pubkey";
           },
+          {
+            name: "permission";
+            type: "u128";
+          },
+          {
+            name: "padding";
+            type: {
+              array: ["u64", 2];
+            };
+          }
         ];
       };
     },
@@ -7901,7 +7869,7 @@ export type LbClmm = {
           {
             name: "activeSize";
             docs: [
-              "Size of active sample. Active sample is initialized observation.",
+              "Size of active sample. Active sample is initialized observation."
             ];
             type: "u64";
           },
@@ -7909,14 +7877,14 @@ export type LbClmm = {
             name: "length";
             docs: ["Number of observations"];
             type: "u64";
-          },
+          }
         ];
       };
     },
     {
       name: "pairStatus";
       docs: [
-        "Pair status. 0 = Enabled, 1 = Disabled. Putting 0 as enabled for backward compatibility.",
+        "Pair status. 0 = Enabled, 1 = Disabled. Putting 0 as enabled for backward compatibility."
       ];
       repr: {
         kind: "rust";
@@ -7929,14 +7897,14 @@ export type LbClmm = {
           },
           {
             name: "disabled";
-          },
+          }
         ];
       };
     },
     {
       name: "pairType";
       docs: [
-        "Type of the Pair. 0 = Permissionless, 1 = Permission, 2 = CustomizablePermissionless. Putting 0 as permissionless for backward compatibility.",
+        "Type of the Pair. 0 = Permissionless, 1 = Permission, 2 = CustomizablePermissionless. Putting 0 as permissionless for backward compatibility."
       ];
       repr: {
         kind: "rust";
@@ -7955,7 +7923,7 @@ export type LbClmm = {
           },
           {
             name: "permissionlessV2";
-          },
+          }
         ];
       };
     },
@@ -7976,14 +7944,14 @@ export type LbClmm = {
           {
             name: "owner";
             docs: [
-              "Owner of the position. Client rely on this to to fetch their positions.",
+              "Owner of the position. Client rely on this to to fetch their positions."
             ];
             type: "pubkey";
           },
           {
             name: "liquidityShares";
             docs: [
-              "Liquidity shares of this position in bins (lower_bin_id <-> upper_bin_id). This is the same as LP concept.",
+              "Liquidity shares of this position in bins (lower_bin_id <-> upper_bin_id). This is the same as LP concept."
             ];
             type: {
               array: ["u64", 70];
@@ -7999,7 +7967,7 @@ export type LbClmm = {
                     name: "userRewardInfo";
                   };
                 },
-                70,
+                70
               ];
             };
           },
@@ -8013,7 +7981,7 @@ export type LbClmm = {
                     name: "feeInfo";
                   };
                 },
-                70,
+                70
               ];
             };
           },
@@ -8055,7 +8023,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 160];
             };
-          },
+          }
         ];
       };
     },
@@ -8087,7 +8055,7 @@ export type LbClmm = {
                 name: "feeInfo";
               };
             };
-          },
+          }
         ];
       };
     },
@@ -8103,7 +8071,7 @@ export type LbClmm = {
           {
             name: "owner";
             type: "pubkey";
-          },
+          }
         ];
       };
     },
@@ -8123,7 +8091,7 @@ export type LbClmm = {
           {
             name: "owner";
             type: "pubkey";
-          },
+          }
         ];
       };
     },
@@ -8144,14 +8112,14 @@ export type LbClmm = {
           {
             name: "owner";
             docs: [
-              "Owner of the position. Client rely on this to to fetch their positions.",
+              "Owner of the position. Client rely on this to to fetch their positions."
             ];
             type: "pubkey";
           },
           {
             name: "liquidityShares";
             docs: [
-              "Liquidity shares of this position in bins (lower_bin_id <-> upper_bin_id). This is the same as LP concept.",
+              "Liquidity shares of this position in bins (lower_bin_id <-> upper_bin_id). This is the same as LP concept."
             ];
             type: {
               array: ["u128", 70];
@@ -8167,7 +8135,7 @@ export type LbClmm = {
                     name: "userRewardInfo";
                   };
                 },
-                70,
+                70
               ];
             };
           },
@@ -8181,7 +8149,7 @@ export type LbClmm = {
                     name: "feeInfo";
                   };
                 },
-                70,
+                70
               ];
             };
           },
@@ -8230,24 +8198,29 @@ export type LbClmm = {
           {
             name: "padding0";
             docs: [
-              "_padding_0, previous subjected_to_bootstrap_liquidity_locking, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!",
+              "_padding_0, previous subjected_to_bootstrap_liquidity_locking, BE CAREFUL FOR TOMBSTONE WHEN REUSE !!"
             ];
             type: "u8";
           },
           {
             name: "feeOwner";
             docs: [
-              "Address is able to claim fee in this position, only valid for bootstrap_liquidity_position",
+              "Address is able to claim fee in this position, only valid for bootstrap_liquidity_position"
             ];
             type: "pubkey";
+          },
+          {
+            name: "version";
+            docs: ["version to know whether we have reset tombstone fields"];
+            type: "u8";
           },
           {
             name: "reserved";
             docs: ["Reserved space for future use"];
             type: {
-              array: ["u8", 87];
+              array: ["u8", 86];
             };
-          },
+          }
         ];
       };
     },
@@ -8264,66 +8237,66 @@ export type LbClmm = {
           {
             name: "baseFactor";
             docs: [
-              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor",
+              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor"
             ];
             type: "u16";
           },
           {
             name: "filterPeriod";
             docs: [
-              "Filter period determine high frequency trading time window.",
+              "Filter period determine high frequency trading time window."
             ];
             type: "u16";
           },
           {
             name: "decayPeriod";
             docs: [
-              "Decay period determine when the volatile fee start decay / decrease.",
+              "Decay period determine when the volatile fee start decay / decrease."
             ];
             type: "u16";
           },
           {
             name: "reductionFactor";
             docs: [
-              "Reduction factor controls the volatile fee rate decrement rate.",
+              "Reduction factor controls the volatile fee rate decrement rate."
             ];
             type: "u16";
           },
           {
             name: "variableFeeControl";
             docs: [
-              "Used to scale the variable fee component depending on the dynamic of the market",
+              "Used to scale the variable fee component depending on the dynamic of the market"
             ];
             type: "u32";
           },
           {
             name: "maxVolatilityAccumulator";
             docs: [
-              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate.",
+              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate."
             ];
             type: "u32";
           },
           {
             name: "minBinId";
             docs: [
-              "Min bin id supported by the pool based on the configured bin step.",
+              "Min bin id supported by the pool based on the configured bin step."
             ];
             type: "i32";
           },
           {
             name: "maxBinId";
             docs: [
-              "Max bin id supported by the pool based on the configured bin step.",
+              "Max bin id supported by the pool based on the configured bin step."
             ];
             type: "i32";
           },
           {
             name: "protocolShare";
             docs: [
-              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee",
+              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee"
             ];
             type: "u16";
-          },
+          }
         ];
       };
     },
@@ -8344,49 +8317,49 @@ export type LbClmm = {
           {
             name: "baseFactor";
             docs: [
-              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor",
+              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor"
             ];
             type: "u16";
           },
           {
             name: "filterPeriod";
             docs: [
-              "Filter period determine high frequency trading time window.",
+              "Filter period determine high frequency trading time window."
             ];
             type: "u16";
           },
           {
             name: "decayPeriod";
             docs: [
-              "Decay period determine when the volatile fee start decay / decrease.",
+              "Decay period determine when the volatile fee start decay / decrease."
             ];
             type: "u16";
           },
           {
             name: "variableFeeControl";
             docs: [
-              "Used to scale the variable fee component depending on the dynamic of the market",
+              "Used to scale the variable fee component depending on the dynamic of the market"
             ];
             type: "u32";
           },
           {
             name: "maxVolatilityAccumulator";
             docs: [
-              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate.",
+              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate."
             ];
             type: "u32";
           },
           {
             name: "reductionFactor";
             docs: [
-              "Reduction factor controls the volatile fee rate decrement rate.",
+              "Reduction factor controls the volatile fee rate decrement rate."
             ];
             type: "u16";
           },
           {
             name: "protocolShare";
             docs: [
-              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee",
+              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee"
             ];
             type: "u16";
           },
@@ -8401,8 +8374,10 @@ export type LbClmm = {
             type: "u8";
           },
           {
-            name: "padding0";
-            docs: ["Padding 0 for future use"];
+            name: "functionType";
+            docs: [
+              "function type, to check whether the pool should have LM farming or other functions in the future, refer FunctionType"
+            ];
             type: "u8";
           },
           {
@@ -8411,7 +8386,7 @@ export type LbClmm = {
             type: {
               array: ["u64", 20];
             };
-          },
+          }
         ];
       };
     },
@@ -8431,7 +8406,7 @@ export type LbClmm = {
           {
             name: "amountY";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -8458,7 +8433,7 @@ export type LbClmm = {
           {
             name: "shouldClaimReward";
             docs: [
-              "a flag to indicate that whether rewards should be harvested",
+              "a flag to indicate that whether rewards should be harvested"
             ];
             type: "bool";
           },
@@ -8515,7 +8490,7 @@ export type LbClmm = {
                 };
               };
             };
-          },
+          }
         ];
       };
     },
@@ -8585,7 +8560,7 @@ export type LbClmm = {
             type: {
               array: ["u64", 2];
             };
-          },
+          }
         ];
       };
     },
@@ -8603,7 +8578,7 @@ export type LbClmm = {
                 };
               };
             };
-          },
+          }
         ];
       };
     },
@@ -8623,7 +8598,7 @@ export type LbClmm = {
           {
             name: "length";
             type: "u8";
-          },
+          }
         ];
       };
     },
@@ -8653,7 +8628,7 @@ export type LbClmm = {
           {
             name: "activeBinId";
             type: "i32";
-          },
+          }
         ];
       };
     },
@@ -8683,7 +8658,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 16];
             };
-          },
+          }
         ];
       };
     },
@@ -8701,7 +8676,7 @@ export type LbClmm = {
           },
           {
             name: "upper";
-          },
+          }
         ];
       };
     },
@@ -8753,10 +8728,10 @@ export type LbClmm = {
           {
             name: "cumulativeSecondsWithEmptyLiquidityReward";
             docs: [
-              "Accumulated seconds where when farm distribute rewards, but the bin is empty. The reward will be accumulated for next reward time window.",
+              "Accumulated seconds where when farm distribute rewards, but the bin is empty. The reward will be accumulated for next reward time window."
             ];
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -8770,7 +8745,7 @@ export type LbClmm = {
           },
           {
             name: "down";
-          },
+          }
         ];
       };
     },
@@ -8787,63 +8762,63 @@ export type LbClmm = {
           {
             name: "baseFactor";
             docs: [
-              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor",
+              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor"
             ];
             type: "u16";
           },
           {
             name: "filterPeriod";
             docs: [
-              "Filter period determine high frequency trading time window.",
+              "Filter period determine high frequency trading time window."
             ];
             type: "u16";
           },
           {
             name: "decayPeriod";
             docs: [
-              "Decay period determine when the volatile fee start decay / decrease.",
+              "Decay period determine when the volatile fee start decay / decrease."
             ];
             type: "u16";
           },
           {
             name: "reductionFactor";
             docs: [
-              "Reduction factor controls the volatile fee rate decrement rate.",
+              "Reduction factor controls the volatile fee rate decrement rate."
             ];
             type: "u16";
           },
           {
             name: "variableFeeControl";
             docs: [
-              "Used to scale the variable fee component depending on the dynamic of the market",
+              "Used to scale the variable fee component depending on the dynamic of the market"
             ];
             type: "u32";
           },
           {
             name: "maxVolatilityAccumulator";
             docs: [
-              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate.",
+              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate."
             ];
             type: "u32";
           },
           {
             name: "minBinId";
             docs: [
-              "Min bin id supported by the pool based on the configured bin step.",
+              "Min bin id supported by the pool based on the configured bin step."
             ];
             type: "i32";
           },
           {
             name: "maxBinId";
             docs: [
-              "Max bin id supported by the pool based on the configured bin step.",
+              "Max bin id supported by the pool based on the configured bin step."
             ];
             type: "i32";
           },
           {
             name: "protocolShare";
             docs: [
-              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee",
+              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee"
             ];
             type: "u16";
           },
@@ -8853,12 +8828,17 @@ export type LbClmm = {
             type: "u8";
           },
           {
+            name: "functionType";
+            docs: ["function type"];
+            type: "u8";
+          },
+          {
             name: "padding";
             docs: ["Padding for bytemuck safe alignment"];
             type: {
-              array: ["u8", 5];
+              array: ["u8", 4];
             };
-          },
+          }
         ];
       };
     },
@@ -8892,7 +8872,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 64];
             };
-          },
+          }
         ];
       };
     },
@@ -8927,7 +8907,7 @@ export type LbClmm = {
           },
           {
             name: "bidAskImBalanced";
-          },
+          }
         ];
       };
     },
@@ -8979,7 +8959,7 @@ export type LbClmm = {
           {
             name: "hostFee";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -9004,7 +8984,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 128];
             };
-          },
+          }
         ];
       };
     },
@@ -9021,7 +9001,7 @@ export type LbClmm = {
           },
           {
             name: "tokenProgram2022";
-          },
+          }
         ];
       };
     },
@@ -9049,7 +9029,7 @@ export type LbClmm = {
           {
             name: "sender";
             type: "pubkey";
-          },
+          }
         ];
       };
     },
@@ -9069,7 +9049,7 @@ export type LbClmm = {
           {
             name: "newOperator";
             type: "pubkey";
-          },
+          }
         ];
       };
     },
@@ -9093,7 +9073,7 @@ export type LbClmm = {
           {
             name: "newRewardDuration";
             type: "u64";
-          },
+          }
         ];
       };
     },
@@ -9117,7 +9097,7 @@ export type LbClmm = {
           {
             name: "newFunder";
             type: "pubkey";
-          },
+          }
         ];
       };
     },
@@ -9141,7 +9121,7 @@ export type LbClmm = {
             type: {
               array: ["u64", 2];
             };
-          },
+          }
         ];
       };
     },
@@ -9159,14 +9139,14 @@ export type LbClmm = {
             name: "volatilityAccumulator";
             docs: [
               "Volatility accumulator measure the number of bin crossed since reference bin ID. Normally (without filter period taken into consideration), reference bin ID is the active bin of last swap.",
-              "It affects the variable fee rate",
+              "It affects the variable fee rate"
             ];
             type: "u32";
           },
           {
             name: "volatilityReference";
             docs: [
-              "Volatility reference is decayed volatility accumulator. It is always <= volatility_accumulator",
+              "Volatility reference is decayed volatility accumulator. It is always <= volatility_accumulator"
             ];
             type: "u32";
           },
@@ -9193,7 +9173,7 @@ export type LbClmm = {
             type: {
               array: ["u8", 8];
             };
-          },
+          }
         ];
       };
     },
@@ -9213,10 +9193,10 @@ export type LbClmm = {
           {
             name: "amount";
             type: "u64";
-          },
+          }
         ];
       };
-    },
+    }
   ];
   constants: [
     {
@@ -9277,10 +9257,12 @@ export type LbClmm = {
       value: "100000000";
     },
     {
-      name: "maxBinId";
-      docs: ["Maximum bin ID supported. Computed based on 1 bps."];
+      name: "maxBinIdPerBinStep";
+      docs: [
+        "Maximum bin ID per bin step. Computed based on 1 bps. Used for bin id bound estimation."
+      ];
       type: "i32";
-      value: "443636";
+      value: "351639";
     },
     {
       name: "maxBinPerArray";
@@ -9332,12 +9314,6 @@ export type LbClmm = {
       value: "100000";
     },
     {
-      name: "minBinId";
-      docs: ["Minimum bin ID supported. Computed based on 1 bps."];
-      type: "i32";
-      value: "-443636";
-    },
-    {
       name: "minRewardDuration";
       type: "u64";
       value: "1";
@@ -9346,6 +9322,11 @@ export type LbClmm = {
       name: "numRewards";
       type: "u64";
       value: "2";
+    },
+    {
+      name: "operatorPrefix";
+      type: "bytes";
+      value: "[111, 112, 101, 114, 97, 116, 111, 114]";
     },
     {
       name: "oracle";
@@ -9376,6 +9357,6 @@ export type LbClmm = {
       name: "protocolShare";
       type: "u16";
       value: "500";
-    },
+    }
   ];
 };

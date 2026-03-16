@@ -36,6 +36,7 @@ import {
   BIN_ARRAY_FEE_BN,
   DEFAULT_BIN_PER_POSITION,
   FEE_PRECISION,
+  FunctionType,
   MAX_ACTIVE_BIN_SLIPPAGE,
   MAX_BINS_PER_POSITION,
   MAX_BIN_ARRAY_SIZE,
@@ -59,6 +60,7 @@ import {
   capSlippagePercentage,
   chunkDepositWithRebalanceEndpoint,
   chunkedGetMultipleAccountInfos,
+  chunkedGetProgramAccounts,
   chunks,
   computeFeeFromAmount,
   createProgram,
@@ -213,6 +215,7 @@ import {
   TokenReserve,
   sParameters,
   vParameters,
+  GetPositionsOpt,
 } from "./types";
 
 export class DLMM {
@@ -873,6 +876,7 @@ export class DLMM {
    * class, which represents the connection to the Solana blockchain.
    * @param {PublicKey} userPubKey - The user's wallet public key.
    * @param {Opt} [opt] - An optional object that contains additional options for the function.
+   * @param {GetPositionsOpt} [getPositionsOpt] - Optional settings for chunked position fetching
    * @returns The function `getAllLbPairPositionsByUser` returns a `Promise` that resolves to a `Map`
    * object. The `Map` object contains key-value pairs, where the key is a string representing the LB
    * Pair account, and the value is an object of PositionInfo
@@ -1185,21 +1189,24 @@ export class DLMM {
    * The function `getLbPairLockInfo` retrieves all pair positions that has locked liquidity.
    * @param {number} [lockDurationOpt] - An optional value indicating the minimum position lock duration that the function should return.
    * Depending on the lbPair activationType, the param should be a number of seconds or a number of slots.
+   * @param {GetPositionsOpt} [getPositionsOpt] - Optional settings for chunked position fetching
    * @returns The function `getLbPairLockInfo` returns a `Promise` that resolves to a `PairLockInfo`
    * object. The `PairLockInfo` object contains an array of `PositionLockInfo` objects.
    */
   public async getLbPairLockInfo(
     lockDurationOpt?: number,
+    getPositionsOpt?: GetPositionsOpt
   ): Promise<PairLockInfo> {
     const lockDuration = lockDurationOpt | 0;
 
-    const positionAccounts =
-      await this.program.provider.connection.getProgramAccounts(
-        this.program.programId,
-        {
-          filters: [positionLbPairFilter(this.pubkey)],
-        },
-      );
+    const positionAccounts = await chunkedGetProgramAccounts(
+      this.program.provider.connection,
+      this.program.programId,
+      [positionLbPairFilter(this.pubkey)],
+      getPositionsOpt?.chunkSize,
+      getPositionsOpt?.onChunkFetched,
+      getPositionsOpt?.isParallelExecution
+    );
 
     const lbPairPositions = positionAccounts.map((acc) => {
       return wrapPosition(this.program, acc.pubkey, acc.account);
@@ -1369,6 +1376,7 @@ export class DLMM {
       activeId: activeId.toNumber(),
       binStep: binStep.toNumber(),
       baseFactor: baseFactor.toNumber(),
+      functionType: FunctionType.LiquidityMining,
       activationType,
       activationPoint: activationPoint ? activationPoint : null,
       hasAlphaVault,
@@ -1379,6 +1387,8 @@ export class DLMM {
       padding: Array(63).fill(0),
     };
 
+    const preInstructions: TransactionInstruction[] = [];
+
     const userTokenX = getAssociatedTokenAddressSync(
       tokenX,
       creatorKey,
@@ -1386,12 +1396,66 @@ export class DLMM {
       tokenXAccount.owner,
     );
 
+    const createUserTokenXIx =
+      createAssociatedTokenAccountIdempotentInstruction(
+        creatorKey,
+        userTokenX,
+        creatorKey,
+        tokenX,
+        tokenXAccount.owner
+      );
+
+    preInstructions.push(createUserTokenXIx);
+
     const userTokenY = getAssociatedTokenAddressSync(
       tokenY,
       creatorKey,
       true,
       tokenYAccount.owner,
     );
+
+    const createUserTokenYIx =
+      createAssociatedTokenAccountIdempotentInstruction(
+        creatorKey,
+        userTokenY,
+        creatorKey,
+        tokenY,
+        tokenYAccount.owner
+      );
+
+    preInstructions.push(createUserTokenYIx);
+
+    const postInstructions: TransactionInstruction[] = [];
+
+    // if either mint (tokenX or tokenY) is SOL, wrap a small amount to initialize the wrapped SOL account(s) then unwrap after the pool creation
+    if (
+      (tokenX.equals(NATIVE_MINT) || tokenY.equals(NATIVE_MINT)) &&
+      !opt?.skipSolWrappingOperation
+    ) {
+      const wrapAmount = BigInt(1); // 1 lamport
+
+      if (tokenX.equals(NATIVE_MINT)) {
+        const wrapSOLIxX = wrapSOLInstruction(
+          creatorKey,
+          userTokenX,
+          wrapAmount
+        );
+        preInstructions.push(...wrapSOLIxX);
+      }
+      if (tokenY.equals(NATIVE_MINT)) {
+        const wrapSOLIxY = wrapSOLInstruction(
+          creatorKey,
+          userTokenY,
+          wrapAmount
+        );
+        preInstructions.push(...wrapSOLIxY);
+      }
+
+      const unwrapSOLIx = await unwrapSOLInstruction(creatorKey);
+      if (unwrapSOLIx) {
+        postInstructions.push(unwrapSOLIx);
+      }
+    }
 
     return program.methods
       .initializeCustomizablePermissionlessLbPair2(ixData)
@@ -1412,6 +1476,8 @@ export class DLMM {
         tokenProgramX: tokenXAccount.owner,
         tokenProgramY: tokenYAccount.owner,
       })
+      .preInstructions(preInstructions)
+      .postInstructions(postInstructions)
       .transaction();
   }
 
@@ -1452,6 +1518,9 @@ export class DLMM {
       program.programId,
     );
 
+    const [tokenXAccount, tokenYAccount] =
+      await connection.getMultipleAccountsInfo([tokenX, tokenY]);
+
     const [reserveX] = deriveReserve(tokenX, lbPair, program.programId);
     const [reserveY] = deriveReserve(tokenY, lbPair, program.programId);
     const [oracle] = deriveOracle(lbPair, program.programId);
@@ -1476,6 +1545,7 @@ export class DLMM {
       activeId: activeId.toNumber(),
       binStep: binStep.toNumber(),
       baseFactor: baseFactor.toNumber(),
+      functionType: FunctionType.LiquidityMining,
       activationType,
       activationPoint: activationPoint ? activationPoint : null,
       hasAlphaVault,
@@ -1486,8 +1556,75 @@ export class DLMM {
       padding: Array(63).fill(0),
     };
 
-    const userTokenX = getAssociatedTokenAddressSync(tokenX, creatorKey);
-    const userTokenY = getAssociatedTokenAddressSync(tokenY, creatorKey);
+    const preInstructions: TransactionInstruction[] = [];
+
+    const userTokenX = getAssociatedTokenAddressSync(
+      tokenX,
+      creatorKey,
+      true,
+      tokenXAccount.owner
+    );
+
+    const createUserTokenXIx =
+      createAssociatedTokenAccountIdempotentInstruction(
+        creatorKey,
+        userTokenX,
+        creatorKey,
+        tokenX,
+        tokenXAccount.owner
+      );
+
+    preInstructions.push(createUserTokenXIx);
+
+    const userTokenY = getAssociatedTokenAddressSync(
+      tokenY,
+      creatorKey,
+      true,
+      tokenYAccount.owner
+    );
+
+    const createUserTokenYIx =
+      createAssociatedTokenAccountIdempotentInstruction(
+        creatorKey,
+        userTokenY,
+        creatorKey,
+        tokenY,
+        tokenYAccount.owner
+      );
+
+    preInstructions.push(createUserTokenYIx);
+
+    const postInstructions: TransactionInstruction[] = [];
+
+    // if either mint (tokenX or tokenY) is SOL, wrap a small amount to initialize the wrapped SOL account(s) then unwrap after the pool creation
+    if (
+      (tokenX.equals(NATIVE_MINT) || tokenY.equals(NATIVE_MINT)) &&
+      !opt?.skipSolWrappingOperation
+    ) {
+      const wrapAmount = BigInt(1); // 1 lamport
+
+      if (tokenX.equals(NATIVE_MINT)) {
+        const wrapSOLIxX = wrapSOLInstruction(
+          creatorKey,
+          userTokenX,
+          wrapAmount
+        );
+        preInstructions.push(...wrapSOLIxX);
+      }
+      if (tokenY.equals(NATIVE_MINT)) {
+        const wrapSOLIxY = wrapSOLInstruction(
+          creatorKey,
+          userTokenY,
+          wrapAmount
+        );
+        preInstructions.push(...wrapSOLIxY);
+      }
+
+      const unwrapSOLIx = await unwrapSOLInstruction(creatorKey);
+      if (unwrapSOLIx) {
+        postInstructions.push(unwrapSOLIx);
+      }
+    }
 
     return program.methods
       .initializeCustomizablePermissionlessLbPair(ixData)
@@ -1504,6 +1641,8 @@ export class DLMM {
         userTokenY,
         funder: creatorKey,
       })
+      .preInstructions(preInstructions)
+      .postInstructions(postInstructions)
       .transaction();
   }
 
@@ -1864,7 +2003,7 @@ export class DLMM {
       .setPairStatusPermissionless(status)
       .accountsPartial({
         lbPair: this.pubkey,
-        creator,
+        signer: creator,
       })
       .transaction();
 
@@ -2226,28 +2365,34 @@ export class DLMM {
    * `PublicKey`. It represents the public key of a user. If no `userPubKey` is provided, the function
    * will return an object with an empty `userPositions` array and the active bin information obtained
    * from the `getActive
+   * @param {GetPositionsOpt} [getPositionsOpt] - Optional settings for chunked position fetching
    * @returns The function `getPositionsByUserAndLbPair` returns a Promise that resolves to an object
    * with two properties:
    *    - "activeBin" which is an object with two properties: "binId" and "price". The value of "binId"
    *     is the active bin ID of the lbPair, and the value of "price" is the price of the active bin.
    *   - "userPositions" which is an array of Position objects.
    */
-  public async getPositionsByUserAndLbPair(userPubKey?: PublicKey): Promise<{
+  public async getPositionsByUserAndLbPair(
+    userPubKey?: PublicKey,
+    getPositionsOpt?: GetPositionsOpt
+  ): Promise<{
     activeBin: BinLiquidity;
     userPositions: Array<LbPosition>;
   }> {
     const promiseResults = await Promise.all([
       this.getActiveBin(),
       userPubKey &&
-        this.program.provider.connection.getProgramAccounts(
+        chunkedGetProgramAccounts(
+          this.program.provider.connection,
           this.program.programId,
-          {
-            filters: [
-              positionV2Filter(),
-              positionOwnerFilter(userPubKey),
-              positionLbPairFilter(this.pubkey),
-            ],
-          },
+          [
+            positionV2Filter(),
+            positionOwnerFilter(userPubKey),
+            positionLbPairFilter(this.pubkey),
+          ],
+          getPositionsOpt?.chunkSize,
+          getPositionsOpt?.onChunkFetched,
+          getPositionsOpt?.isParallelExecution
         ),
     ]);
 
@@ -2480,6 +2625,7 @@ export class DLMM {
         position: positionPubKey,
         lbPair: this.pubkey,
         owner: user,
+        rent: SYSVAR_RENT_PUBKEY,
       })
       .instruction();
 
@@ -2911,6 +3057,7 @@ export class DLMM {
           lbPair: this.pubkey,
           owner,
           payer,
+          rent: SYSVAR_RENT_PUBKEY,
         })
         .instruction();
 
@@ -3048,6 +3195,7 @@ export class DLMM {
         position: positionPubKey,
         lbPair: this.pubkey,
         owner: user,
+        rent: SYSVAR_RENT_PUBKEY,
       })
       .instruction();
     preInstructions.push(initializePositionIx);
@@ -3253,6 +3401,7 @@ export class DLMM {
         position: positionPubKey,
         lbPair: this.pubkey,
         owner: user,
+        rent: SYSVAR_RENT_PUBKEY,
       })
       .instruction();
     preInstructions.push(initializePositionIx);
@@ -4006,33 +4155,53 @@ export class DLMM {
     const owner = positionState.owner();
     const feeOwner = positionState.feeOwner();
     const liquidityShares = positionState.liquidityShares();
+    const feeInfos = positionState.feeInfos();
+    const rewardInfos = positionState.rewardInfos();
 
-    const liqudityShareWithBinId = liquidityShares.map((share, i) => {
+    const binDataWithBinId = liquidityShares.map((share, i) => {
+      const feeInfo = feeInfos[i];
+      const rewardInfo = rewardInfos[i];
+      const hasFees =
+        feeInfo &&
+        (!feeInfo.feeXPending.isZero() || !feeInfo.feeYPending.isZero());
+      const hasRewards =
+        rewardInfo &&
+        rewardInfo.rewardPendings.some((pending) => !pending.isZero());
       return {
         share,
         binId: positionState.lowerBinId().add(new BN(i)),
+        hasFeesOrRewards: hasFees || hasRewards,
       };
     });
 
-    const binIdsWithLiquidity = liqudityShareWithBinId.filter((bin) => {
+    const binIdsWithLiquidity = binDataWithBinId.filter((bin) => {
       return !bin.share.isZero();
     });
 
-    if (binIdsWithLiquidity.length === 0) {
+    const binIdsWithLiquidityOrFees = binDataWithBinId.filter((bin) => {
+      return !bin.share.isZero() || bin.hasFeesOrRewards;
+    });
+
+    const hasLiquidity = binIdsWithLiquidity.length > 0;
+    if (!hasLiquidity && !shouldClaimAndClose) {
       throw new Error("No liquidity to remove");
     }
 
-    const lowerBinIdWithLiquidity = binIdsWithLiquidity[0].binId.toNumber();
-    const upperBinIdWithLiquidity =
-      binIdsWithLiquidity[binIdsWithLiquidity.length - 1].binId.toNumber();
+    const activeBins = shouldClaimAndClose
+      ? binIdsWithLiquidityOrFees
+      : binIdsWithLiquidity;
+
+    const lowerActiveBinId = activeBins[0].binId.toNumber();
+    const upperActiveBinId =
+      activeBins[activeBins.length - 1].binId.toNumber();
 
     // Avoid to attempt to load uninitialized bin array on the program
-    if (fromBinId < lowerBinIdWithLiquidity) {
-      fromBinId = lowerBinIdWithLiquidity;
+    if (fromBinId < lowerActiveBinId) {
+      fromBinId = lowerActiveBinId;
     }
 
-    if (toBinId > upperBinIdWithLiquidity) {
-      toBinId = upperBinIdWithLiquidity;
+    if (toBinId > upperActiveBinId) {
+      toBinId = upperActiveBinId;
     }
 
     const walletToReceiveFee = feeOwner.equals(PublicKey.default)
@@ -4224,34 +4393,36 @@ export class DLMM {
         ? this.binArrayBitmapExtension.publicKey
         : this.program.programId;
 
-      const removeLiquidityTx = await this.program.methods
-        .removeLiquidityByRange2(lowerBinId, upperBinId, bps.toNumber(), {
-          slices,
-        })
-        .accountsPartial({
-          position,
-          lbPair,
-          userTokenX,
-          userTokenY,
-          reserveX: this.lbPair.reserveX,
-          reserveY: this.lbPair.reserveY,
-          tokenXMint: this.tokenX.publicKey,
-          tokenYMint: this.tokenY.publicKey,
-          binArrayBitmapExtension,
-          tokenXProgram: this.tokenX.owner,
-          tokenYProgram: this.tokenY.owner,
-          sender: user,
-          memoProgram: MEMO_PROGRAM_ID,
-        })
-        .remainingAccounts(transferHookAccounts)
-        .remainingAccounts(binArrayAccountsMeta)
-        .instruction();
+      const instructions = [...preInstructions];
 
-      const instructions = [
-        ...preInstructions,
-        removeLiquidityTx,
-        ...postInstructions,
-      ];
+      if (hasLiquidity) {
+        const removeLiquidityTx = await this.program.methods
+          .removeLiquidityByRange2(lowerBinId, upperBinId, bps.toNumber(), {
+            slices,
+          })
+          .accountsPartial({
+            position,
+            lbPair,
+            userTokenX,
+            userTokenY,
+            reserveX: this.lbPair.reserveX,
+            reserveY: this.lbPair.reserveY,
+            tokenXMint: this.tokenX.publicKey,
+            tokenYMint: this.tokenY.publicKey,
+            binArrayBitmapExtension,
+            tokenXProgram: this.tokenX.owner,
+            tokenYProgram: this.tokenY.owner,
+            sender: user,
+            memoProgram: MEMO_PROGRAM_ID,
+          })
+          .remainingAccounts(transferHookAccounts)
+          .remainingAccounts(binArrayAccountsMeta)
+          .instruction();
+
+        instructions.push(removeLiquidityTx);
+      }
+
+      instructions.push(...postInstructions);
 
       groupedInstructions.push(instructions);
     }
@@ -5290,7 +5461,7 @@ export class DLMM {
       .setActivationPoint(activationPoint)
       .accountsPartial({
         lbPair: this.pubkey,
-        admin: this.lbPair.creator,
+        signer: this.lbPair.creator,
       })
       .transaction();
 
@@ -5310,7 +5481,7 @@ export class DLMM {
       .setPairStatus(pairStatus)
       .accountsPartial({
         lbPair: this.pubkey,
-        admin: this.lbPair.creator,
+        signer: this.lbPair.creator,
       })
       .transaction();
 
@@ -7362,6 +7533,7 @@ export class DLMM {
         position,
         lbPair: this.pubkey,
         owner: user,
+        rent: SYSVAR_RENT_PUBKEY,
       })
       .instruction();
 
@@ -7776,7 +7948,7 @@ export class DLMM {
               supply: bin.liquiditySupply,
               feeAmountXPerTokenStored: bin.feeAmountXPerTokenStored,
               feeAmountYPerTokenStored: bin.feeAmountYPerTokenStored,
-              rewardPerTokenStored: bin.rewardPerTokenStored,
+              rewardPerTokenStored: bin.functionBytes,
               price: pricePerLamport,
               version: binArray.version,
               pricePerToken: new Decimal(pricePerLamport)
